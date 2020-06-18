@@ -1,0 +1,157 @@
+# this is an auto generated file. This will be overwritten
+query GetCustomer($id: ID!) {
+  getCustomer(id: $id) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListCustomers(
+  $filter: ModelCustomerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetBill($id: ID!) {
+  getBill(id: $id) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListBills(
+  $filter: ModelBillFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetLine($id: ID!) {
+  getLine(id: $id) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListLines(
+  $filter: ModelLineFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLines(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      billID
+      bill {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      title
+      quantity
+      cost
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}

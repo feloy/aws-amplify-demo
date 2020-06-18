@@ -1,0 +1,250 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCustomer($owner: String!) {
+  onCreateCustomer(owner: $owner) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateCustomer($owner: String!) {
+  onUpdateCustomer(owner: $owner) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteCustomer($owner: String!) {
+  onDeleteCustomer(owner: $owner) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateBill($owner: String!) {
+  onCreateBill(owner: $owner) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateBill($owner: String!) {
+  onUpdateBill(owner: $owner) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteBill($owner: String!) {
+  onDeleteBill(owner: $owner) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateLine($owner: String!) {
+  onCreateLine(owner: $owner) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateLine($owner: String!) {
+  onUpdateLine(owner: $owner) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteLine($owner: String!) {
+  onDeleteLine(owner: $owner) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}

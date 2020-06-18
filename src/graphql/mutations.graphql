@@ -1,0 +1,277 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateCustomer(
+  $input: CreateCustomerInput!
+  $condition: ModelCustomerConditionInput
+) {
+  createCustomer(input: $input, condition: $condition) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateCustomer(
+  $input: UpdateCustomerInput!
+  $condition: ModelCustomerConditionInput
+) {
+  updateCustomer(input: $input, condition: $condition) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteCustomer(
+  $input: DeleteCustomerInput!
+  $condition: ModelCustomerConditionInput
+) {
+  deleteCustomer(input: $input, condition: $condition) {
+    id
+    name
+    bills {
+      items {
+        id
+        title
+        customerID
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateBill(
+  $input: CreateBillInput!
+  $condition: ModelBillConditionInput
+) {
+  createBill(input: $input, condition: $condition) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateBill(
+  $input: UpdateBillInput!
+  $condition: ModelBillConditionInput
+) {
+  updateBill(input: $input, condition: $condition) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteBill(
+  $input: DeleteBillInput!
+  $condition: ModelBillConditionInput
+) {
+  deleteBill(input: $input, condition: $condition) {
+    id
+    title
+    customerID
+    customer {
+      id
+      name
+      bills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateLine(
+  $input: CreateLineInput!
+  $condition: ModelLineConditionInput
+) {
+  createLine(input: $input, condition: $condition) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateLine(
+  $input: UpdateLineInput!
+  $condition: ModelLineConditionInput
+) {
+  updateLine(input: $input, condition: $condition) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteLine(
+  $input: DeleteLineInput!
+  $condition: ModelLineConditionInput
+) {
+  deleteLine(input: $input, condition: $condition) {
+    id
+    billID
+    bill {
+      id
+      title
+      customerID
+      customer {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    owner
+  }
+}
