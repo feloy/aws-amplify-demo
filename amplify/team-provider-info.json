@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-billing-dev-105648-authRole",
+            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-105648-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-105648-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-billing-dev-105648-deployment",
+            "UnauthRoleName": "amplify-billing-dev-105648-unauthRole",
+            "StackName": "amplify-billing-dev-105648",
+            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-dev-105648/a6a28200-b141-11ea-b50c-02bfe56b0f60",
+            "AmplifyAppId": "d1054gnrjvy2b0"
+        }
+    }
+}
