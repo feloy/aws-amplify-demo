@@ -1,0 +1,31 @@
+type Customer
+@model
+@auth(rules: [{allow: owner}])
+{
+  id: ID!
+  name: String!
+  bills: [Bill] @connection(keyName: "byCustomer", fields: ["id"])
+}
+type Bill
+@model
+@auth(rules: [{allow: owner}])
+@key(name: "byCustomer", fields: ["customerID"])
+{
+  id: ID!
+  title: String!
+  customerID: ID!
+  customer: Customer @connection(fields: ["customerID"])
+  lines: [Line] @connection(keyName: "byBill", fields: ["id"])
+}
+type Line
+@model
+@auth(rules: [{allow: owner}])
+@key(name: "byBill", fields: ["billID", "title"])
+{
+  id: ID!
+  billID: ID!
+  bill: Bill @connection(fields: ["billID"])
+  title: String!
+  quantity: Int!
+  cost: Float!
+}
