@@ -1,0 +1,15 @@
+amplify-authenticator {
+    text-align: center;
+}
+
+main {
+    text-align: left;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.content {
+    padding: 16px;
+}
