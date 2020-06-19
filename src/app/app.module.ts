@@ -8,6 +8,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule} from '@angular/material/button';
 import { MatListModule} from '@angular/material/list';
 import { MatIconModule} from '@angular/material/icon';
+import { MatInputModule} from '@angular/material/input';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
@@ -15,6 +16,7 @@ import awsmobile from '../aws-exports';
 import { CustomersComponent } from './components/customers/customers.component';
 import { BillsComponent } from './components/bills/bills.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* Configure Amplify resources */
 Amplify.configure(awsmobile);
@@ -27,14 +29,17 @@ Amplify.configure(awsmobile);
     CustomerComponent
   ],
   imports: [
+    // Angular
     BrowserModule,
     AppRoutingModule,
-    // Angular
+    ReactiveFormsModule,
+    // Material
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
     MatIconModule,
+    MatInputModule,
     // Amplify
     AmplifyUIAngularModule
   ],

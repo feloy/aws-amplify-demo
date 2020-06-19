@@ -2,6 +2,6 @@
     <a *ngFor="let customer of customers" mat-list-item [routerLink]="['/customer', customer.id]">{{customer.name}}</a>
 </mat-nav-list>
 
-<button mat-fab class="mat-fab-bottom-right" color="accent" [routerLink]="['/customer', '']">
+<button mat-fab class="mat-fab-bottom-right" color="accent" [routerLink]="['/newcustomer']">
     <mat-icon>add</mat-icon>
 </button>
