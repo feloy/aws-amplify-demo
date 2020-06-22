@@ -16,5 +16,23 @@
                 "billinga966576a": {}
             }
         }
+    },
+    "production": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-billing-production-205941-authRole",
+            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-production-205941-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-production-205941-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-billing-production-205941-deployment",
+            "UnauthRoleName": "amplify-billing-production-205941-unauthRole",
+            "StackName": "amplify-billing-production-205941",
+            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-production-205941/88384fd0-b4ba-11ea-b5fe-060f8efab01c",
+            "AmplifyAppId": "d1054gnrjvy2b0"
+        },
+        "categories": {
+            "auth": {
+                "billinga966576a": {}
+            }
+        }
     }
 }
