@@ -1,0 +1,21 @@
+<h2 *ngIf="editMode">Edit bill</h2>
+<h2 *ngIf="!editMode">Add a bill</h2>
+
+<form [formGroup]="form">
+    <div>
+        <mat-form-field [style.width.px]="256">
+            <mat-label><span>Title</span></mat-label>
+            <input matInput type="string" formControlName="title">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <app-customer-select formControlName="customerID"></app-customer-select>
+    </div>
+
+    <div class="buttonbar">
+        <button *ngIf="!editMode" mat-raised-button color="primary" (click)="add()">Add</button>
+        <button *ngIf="editMode" mat-raised-button color="warn" (click)="delete()">Delete</button>
+        <button *ngIf="editMode" mat-raised-button color="primary" (click)="update()">Update</button>
+    </div>
+</form>

@@ -1,0 +1,6 @@
+<mat-form-field [style.width.px]="256">
+    <mat-label><span>Customer</span></mat-label>
+    <mat-select [ngModel]="customerID" (selectionChange)="change($event.value)">
+        <mat-option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</mat-option>
+    </mat-select>
+</mat-form-field>

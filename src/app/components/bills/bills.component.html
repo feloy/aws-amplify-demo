@@ -1,1 +1,10 @@
-<p>bills works!</p>
+<mat-nav-list>
+    <a *ngFor="let bill of bills" mat-list-item [routerLink]="['/bill', bill.id]">
+        <h3 matLine>{{bill.createdAt | date:'shortDate'}} - {{bill.title}}</h3>
+        <p matLine>{{bill.customer?.name}}</p>
+    </a>
+</mat-nav-list>
+
+<button mat-fab class="mat-fab-bottom-right" color="accent" [routerLink]="['/newbill']">
+    <mat-icon>add</mat-icon>
+</button>
