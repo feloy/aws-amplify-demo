@@ -10,11 +10,13 @@ export type CreateCustomerInput = {
   id?: string | null;
   name: string;
   address?: string | null;
+  siret?: string | null;
 };
 
 export type ModelCustomerConditionInput = {
   name?: ModelStringInput | null;
   address?: ModelStringInput | null;
+  siret?: ModelStringInput | null;
   and?: Array<ModelCustomerConditionInput | null> | null;
   or?: Array<ModelCustomerConditionInput | null> | null;
   not?: ModelCustomerConditionInput | null;
@@ -63,6 +65,7 @@ export type UpdateCustomerInput = {
   id: string;
   name?: string | null;
   address?: string | null;
+  siret?: string | null;
 };
 
 export type DeleteCustomerInput = {
@@ -167,6 +170,7 @@ export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   address?: ModelStringInput | null;
+  siret?: ModelStringInput | null;
   and?: Array<ModelCustomerFilterInput | null> | null;
   or?: Array<ModelCustomerFilterInput | null> | null;
   not?: ModelCustomerFilterInput | null;
@@ -197,6 +201,7 @@ export type CreateCustomerMutation = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -220,6 +225,7 @@ export type UpdateCustomerMutation = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -243,6 +249,7 @@ export type DeleteCustomerMutation = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -271,6 +278,7 @@ export type CreateBillMutation = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -309,6 +317,7 @@ export type UpdateBillMutation = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -347,6 +356,7 @@ export type DeleteBillMutation = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -389,6 +399,7 @@ export type CreateLineMutation = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -423,6 +434,7 @@ export type UpdateLineMutation = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -457,6 +469,7 @@ export type DeleteLineMutation = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -482,6 +495,7 @@ export type GetCustomerQuery = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -507,6 +521,7 @@ export type ListCustomersQuery = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -528,6 +543,7 @@ export type GetBillQuery = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -568,6 +584,7 @@ export type ListBillsQuery = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -597,6 +614,7 @@ export type GetLineQuery = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -647,6 +665,7 @@ export type OnCreateCustomerSubscription = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -670,6 +689,7 @@ export type OnUpdateCustomerSubscription = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -693,6 +713,7 @@ export type OnDeleteCustomerSubscription = {
   id: string;
   name: string;
   address: string | null;
+  siret: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -721,6 +742,7 @@ export type OnCreateBillSubscription = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -759,6 +781,7 @@ export type OnUpdateBillSubscription = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -797,6 +820,7 @@ export type OnDeleteBillSubscription = {
     id: string;
     name: string;
     address: string | null;
+    siret: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -839,6 +863,7 @@ export type OnCreateLineSubscription = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -873,6 +898,7 @@ export type OnUpdateLineSubscription = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -907,6 +933,7 @@ export type OnDeleteLineSubscription = {
       id: string;
       name: string;
       address: string | null;
+      siret: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -941,6 +968,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -980,6 +1008,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1019,6 +1048,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1063,6 +1093,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1117,6 +1148,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1171,6 +1203,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1229,6 +1262,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1279,6 +1313,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1329,6 +1364,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1367,6 +1403,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1406,6 +1443,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1444,6 +1482,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1498,6 +1537,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1544,6 +1584,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1628,6 +1669,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1659,6 +1701,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1690,6 +1733,7 @@ export class APIService {
           id
           name
           address
+          siret
           bills {
             __typename
             items {
@@ -1724,6 +1768,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1768,6 +1813,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1812,6 +1858,7 @@ export class APIService {
             id
             name
             address
+            siret
             bills {
               __typename
               nextToken
@@ -1860,6 +1907,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1900,6 +1948,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
@@ -1940,6 +1989,7 @@ export class APIService {
               id
               name
               address
+              siret
               createdAt
               updatedAt
               owner
