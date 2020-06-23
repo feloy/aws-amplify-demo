@@ -4,6 +4,7 @@ type Customer
 {
   id: ID!
   name: String!
+  address: String
   bills: [Bill] @connection(keyName: "byCustomer", fields: ["id"])
 }
 type Bill
