@@ -31,8 +31,6 @@ export class BillComponent implements OnInit {
         this.loadBill(params['id']);
       }
     });
-
-    this.form.valueChanges.subscribe(v => console.log(v));
   }
 
   loadBill(id: string) {

@@ -15,7 +15,6 @@ export class BillsComponent implements OnInit {
   ngOnInit(): void {
     this.api.ListBills().then((list: ListBillsQuery) => {
       this.bills = list.items;
-      console.log(list.items);
     });
   }
 }
