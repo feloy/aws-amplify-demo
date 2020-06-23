@@ -4,6 +4,7 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { BillsComponent } from './components/bills/bills.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { BillComponent } from './components/bill/bill.component';
+import { BillLinesComponent } from './components/bill-lines/bill-lines.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'newbill',
     component: BillComponent,
+  },
+  {
+    path: 'bill-lines/:id',
+    component: BillLinesComponent,
   },
 ];
 
