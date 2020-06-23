@@ -1,20 +1,15 @@
 {
-    "dev": {
+    "addaddress": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-billing-dev-105648-authRole",
-            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-105648-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-105648-authRole",
+            "AuthRoleName": "amplify-billing-addaddress-91211-authRole",
+            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-addaddress-91211-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-addaddress-91211-authRole",
             "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-billing-dev-105648-deployment",
-            "UnauthRoleName": "amplify-billing-dev-105648-unauthRole",
-            "StackName": "amplify-billing-dev-105648",
-            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-dev-105648/a6a28200-b141-11ea-b50c-02bfe56b0f60",
+            "DeploymentBucketName": "amplify-billing-addaddress-91211-deployment",
+            "UnauthRoleName": "amplify-billing-addaddress-91211-unauthRole",
+            "StackName": "amplify-billing-addaddress-91211",
+            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-addaddress-91211/9f569ce0-b531-11ea-b31f-02ee8e94a71a",
             "AmplifyAppId": "d1054gnrjvy2b0"
-        },
-        "categories": {
-            "auth": {
-                "billinga966576a": {}
-            }
         }
     },
     "production": {

@@ -11,6 +11,13 @@
 
     <div>
         <mat-form-field [style.width.px]="256">
+            <mat-label><span>SIRET</span></mat-label>
+            <input matInput type="string" formControlName="siret">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field [style.width.px]="256">
             <mat-label><span>Address</span></mat-label>
             <textarea matInput formControlName="address"></textarea>
         </mat-form-field>

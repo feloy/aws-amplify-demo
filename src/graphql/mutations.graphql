@@ -7,6 +7,7 @@ mutation CreateCustomer(
     id
     name
     address
+    siret
     bills {
       items {
         id
@@ -31,6 +32,7 @@ mutation UpdateCustomer(
     id
     name
     address
+    siret
     bills {
       items {
         id
@@ -55,6 +57,7 @@ mutation DeleteCustomer(
     id
     name
     address
+    siret
     bills {
       items {
         id
@@ -83,6 +86,7 @@ mutation CreateBill(
       id
       name
       address
+      siret
       bills {
         nextToken
       }
@@ -120,6 +124,7 @@ mutation UpdateBill(
       id
       name
       address
+      siret
       bills {
         nextToken
       }
@@ -157,6 +162,7 @@ mutation DeleteBill(
       id
       name
       address
+      siret
       bills {
         nextToken
       }
@@ -197,6 +203,7 @@ mutation CreateLine(
         id
         name
         address
+        siret
         createdAt
         updatedAt
         owner
@@ -231,6 +238,7 @@ mutation UpdateLine(
         id
         name
         address
+        siret
         createdAt
         updatedAt
         owner
@@ -265,6 +273,7 @@ mutation DeleteLine(
         id
         name
         address
+        siret
         createdAt
         updatedAt
         owner

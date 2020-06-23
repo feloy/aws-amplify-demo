@@ -4,6 +4,7 @@ query GetCustomer($id: ID!) {
     id
     name
     address
+    siret
     bills {
       items {
         id
@@ -30,6 +31,7 @@ query ListCustomers(
       id
       name
       address
+      siret
       bills {
         nextToken
       }
@@ -49,6 +51,7 @@ query GetBill($id: ID!) {
       id
       name
       address
+      siret
       bills {
         nextToken
       }
@@ -88,6 +91,7 @@ query ListBills(
         id
         name
         address
+        siret
         createdAt
         updatedAt
         owner
@@ -114,6 +118,7 @@ query GetLine($id: ID!) {
         id
         name
         address
+        siret
         createdAt
         updatedAt
         owner
