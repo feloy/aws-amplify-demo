@@ -9,10 +9,12 @@ import { Observable } from "zen-observable-ts";
 export type CreateCustomerInput = {
   id?: string | null;
   name: string;
+  address?: string | null;
 };
 
 export type ModelCustomerConditionInput = {
   name?: ModelStringInput | null;
+  address?: ModelStringInput | null;
   and?: Array<ModelCustomerConditionInput | null> | null;
   or?: Array<ModelCustomerConditionInput | null> | null;
   not?: ModelCustomerConditionInput | null;
@@ -60,6 +62,7 @@ export type ModelSizeInput = {
 export type UpdateCustomerInput = {
   id: string;
   name?: string | null;
+  address?: string | null;
 };
 
 export type DeleteCustomerInput = {
@@ -163,6 +166,7 @@ export type DeleteLineInput = {
 export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  address?: ModelStringInput | null;
   and?: Array<ModelCustomerFilterInput | null> | null;
   or?: Array<ModelCustomerFilterInput | null> | null;
   not?: ModelCustomerFilterInput | null;
@@ -192,6 +196,7 @@ export type CreateCustomerMutation = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -214,6 +219,7 @@ export type UpdateCustomerMutation = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -236,6 +242,7 @@ export type DeleteCustomerMutation = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -263,6 +270,7 @@ export type CreateBillMutation = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -300,6 +308,7 @@ export type UpdateBillMutation = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -337,6 +346,7 @@ export type DeleteBillMutation = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -378,6 +388,7 @@ export type CreateLineMutation = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -411,6 +422,7 @@ export type UpdateLineMutation = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -444,6 +456,7 @@ export type DeleteLineMutation = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -468,6 +481,7 @@ export type GetCustomerQuery = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -492,6 +506,7 @@ export type ListCustomersQuery = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -512,6 +527,7 @@ export type GetBillQuery = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -551,6 +567,7 @@ export type ListBillsQuery = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -579,6 +596,7 @@ export type GetLineQuery = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -628,6 +646,7 @@ export type OnCreateCustomerSubscription = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -650,6 +669,7 @@ export type OnUpdateCustomerSubscription = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -672,6 +692,7 @@ export type OnDeleteCustomerSubscription = {
   __typename: "Customer";
   id: string;
   name: string;
+  address: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -699,6 +720,7 @@ export type OnCreateBillSubscription = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -736,6 +758,7 @@ export type OnUpdateBillSubscription = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -773,6 +796,7 @@ export type OnDeleteBillSubscription = {
     __typename: "Customer";
     id: string;
     name: string;
+    address: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
@@ -814,6 +838,7 @@ export type OnCreateLineSubscription = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -847,6 +872,7 @@ export type OnUpdateLineSubscription = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -880,6 +906,7 @@ export type OnDeleteLineSubscription = {
       __typename: "Customer";
       id: string;
       name: string;
+      address: string | null;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
@@ -913,6 +940,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -951,6 +979,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -989,6 +1018,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -1032,6 +1062,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1085,6 +1116,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1138,6 +1170,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1195,6 +1228,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1244,6 +1278,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1293,6 +1328,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1330,6 +1366,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -1368,6 +1405,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1405,6 +1443,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1458,6 +1497,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1503,6 +1543,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1586,6 +1627,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -1616,6 +1658,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -1646,6 +1689,7 @@ export class APIService {
           __typename
           id
           name
+          address
           bills {
             __typename
             items {
@@ -1679,6 +1723,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1722,6 +1767,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1765,6 +1811,7 @@ export class APIService {
             __typename
             id
             name
+            address
             bills {
               __typename
               nextToken
@@ -1812,6 +1859,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1851,6 +1899,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner
@@ -1890,6 +1939,7 @@ export class APIService {
               __typename
               id
               name
+              address
               createdAt
               updatedAt
               owner

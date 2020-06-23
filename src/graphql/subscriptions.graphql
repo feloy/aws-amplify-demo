@@ -3,6 +3,7 @@ subscription OnCreateCustomer($owner: String!) {
   onCreateCustomer(owner: $owner) {
     id
     name
+    address
     bills {
       items {
         id
@@ -23,6 +24,7 @@ subscription OnUpdateCustomer($owner: String!) {
   onUpdateCustomer(owner: $owner) {
     id
     name
+    address
     bills {
       items {
         id
@@ -43,6 +45,7 @@ subscription OnDeleteCustomer($owner: String!) {
   onDeleteCustomer(owner: $owner) {
     id
     name
+    address
     bills {
       items {
         id
@@ -67,6 +70,7 @@ subscription OnCreateBill($owner: String!) {
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -100,6 +104,7 @@ subscription OnUpdateBill($owner: String!) {
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -133,6 +138,7 @@ subscription OnDeleteBill($owner: String!) {
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -169,6 +175,7 @@ subscription OnCreateLine($owner: String!) {
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner
@@ -199,6 +206,7 @@ subscription OnUpdateLine($owner: String!) {
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner
@@ -229,6 +237,7 @@ subscription OnDeleteLine($owner: String!) {
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner

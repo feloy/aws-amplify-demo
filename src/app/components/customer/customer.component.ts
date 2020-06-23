@@ -22,6 +22,7 @@ export class CustomerComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(null),
       name: new FormControl(null),
+      address: new FormControl(null),
     });
 
     this.route.params.subscribe(params => {
@@ -37,6 +38,7 @@ export class CustomerComponent implements OnInit {
       this.form.patchValue({
         id: customer.id,
         name: customer.name,
+        address: customer.address,
       })
     });
   }

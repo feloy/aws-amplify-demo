@@ -16,7 +16,6 @@ export class CustomersComponent implements OnInit {
   ngOnInit(): void {
     this.api.ListCustomers().then((list: ListCustomersQuery) => {
       this.customers = list.items;
-      console.log(list.items);
     });
   }
 

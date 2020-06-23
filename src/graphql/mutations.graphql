@@ -6,6 +6,7 @@ mutation CreateCustomer(
   createCustomer(input: $input, condition: $condition) {
     id
     name
+    address
     bills {
       items {
         id
@@ -29,6 +30,7 @@ mutation UpdateCustomer(
   updateCustomer(input: $input, condition: $condition) {
     id
     name
+    address
     bills {
       items {
         id
@@ -52,6 +54,7 @@ mutation DeleteCustomer(
   deleteCustomer(input: $input, condition: $condition) {
     id
     name
+    address
     bills {
       items {
         id
@@ -79,6 +82,7 @@ mutation CreateBill(
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -115,6 +119,7 @@ mutation UpdateBill(
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -151,6 +156,7 @@ mutation DeleteBill(
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -190,6 +196,7 @@ mutation CreateLine(
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner
@@ -223,6 +230,7 @@ mutation UpdateLine(
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner
@@ -256,6 +264,7 @@ mutation DeleteLine(
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner

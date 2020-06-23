@@ -3,6 +3,7 @@ query GetCustomer($id: ID!) {
   getCustomer(id: $id) {
     id
     name
+    address
     bills {
       items {
         id
@@ -28,6 +29,7 @@ query ListCustomers(
     items {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -46,6 +48,7 @@ query GetBill($id: ID!) {
     customer {
       id
       name
+      address
       bills {
         nextToken
       }
@@ -84,6 +87,7 @@ query ListBills(
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner
@@ -109,6 +113,7 @@ query GetLine($id: ID!) {
       customer {
         id
         name
+        address
         createdAt
         updatedAt
         owner

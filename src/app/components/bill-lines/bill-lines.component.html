@@ -1,0 +1,48 @@
+<div *ngIf="bill">
+    <div>{{bill.customer.name}}</div>
+    <div>{{bill.customer.address}}</div>
+    <div>Title : {{bill.title}}</div>
+    <div>Creation date : {{bill.createdAt | date:'shortDate'}}</div>
+    <form [formGroup]="form">
+        <table>
+            <tr>
+                <th>Qty</th>
+                <th>Designation</th>
+                <th>Unit price</th>
+                <th>Total price</th>
+            </tr>
+            <tr *ngFor="let line of bill.lines.items">
+                <td>{{line.quantity}}</td>
+                <td>{{line.title}}</td>
+                <td>{{line.cost}}</td>
+                <td>{{total(line)}}</td>
+                <td>
+                    <button mat-button (click)="delete(line.id)">Delete</button>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" formControlName="billID">
+                    <mat-form-field [style.width.px]="48">
+                        <input matInput type="number" formControlName="quantity">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field [style.width.px]="256">
+                        <input matInput type="string" formControlName="title">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field [style.width.px]="96">
+                        <input matInput type="number" formControlName="cost">
+                    </mat-form-field>
+                </td>
+                <td></td>
+                <td>
+                    <button mat-button (click)="add()">Add</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
