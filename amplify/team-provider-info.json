@@ -1,4 +1,17 @@
 {
+    "user": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-billing-user-173435-authRole",
+            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-user-173435-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-user-173435-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-billing-user-173435-deployment",
+            "UnauthRoleName": "amplify-billing-user-173435-unauthRole",
+            "StackName": "amplify-billing-user-173435",
+            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-user-173435/23829da0-b70a-11ea-840a-0272ba7477a4",
+            "AmplifyAppId": "d1054gnrjvy2b0"
+        }
+    },
     "production": {
         "awscloudformation": {
             "AuthRoleName": "amplify-billing-production-205941-authRole",
@@ -16,28 +29,8 @@
                 "billinga966576a": {}
             },
             "function": {
-                "serialnum": {}
-            }
-        }
-    },
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-billing-dev-153840-authRole",
-            "UnauthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-153840-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::496293531155:role/amplify-billing-dev-153840-authRole",
-            "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-billing-dev-153840-deployment",
-            "UnauthRoleName": "amplify-billing-dev-153840-unauthRole",
-            "StackName": "amplify-billing-dev-153840",
-            "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-dev-153840/2ee7cd80-b6e9-11ea-b5fe-060f8efab01c",
-            "AmplifyAppId": "d1054gnrjvy2b0"
-        },
-        "categories": {
-            "auth": {
-                "billinga966576a": {}
-            },
-            "function": {
-                "billing": {}
+                "serialnum": {},
+                "serial": {}
             }
         }
     }

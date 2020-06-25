@@ -100,8 +100,8 @@
 				"Runtime": "nodejs12.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-billing-dev-153840-deployment",
-					"S3Key": "amplify-builds/serial-576f4535367378465033-build.zip"
+					"S3Bucket": "amplify-billing-user-173435-deployment",
+					"S3Key": "amplify-builds/serial-6a5344594a7456306b31-build.zip"
 				}
 			}
 		},

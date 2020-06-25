@@ -37,3 +37,16 @@ type Line
   quantity: Int!
   cost: Float!
 }
+
+type User
+@model
+@auth(rules: [{allow: owner}])
+{
+  id: ID!
+  firstname: String
+  lastname: String
+  address: String
+  phone: String
+  email: String
+  siret: String
+}
