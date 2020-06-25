@@ -5,7 +5,7 @@
  * where NNNN is an auto-increment on the bills of the month YYYYMM.
  */
 const AWS = require('aws-sdk');
-AWS.config.update({ region: 'eu-west-1' });
+AWS.config.update({ region: process.env.REGION });
 
 // Create the DynamoDB service object
 const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
@@ -15,7 +15,7 @@ exports.handler = async (event) => {
   for (let i=0; i<event.Records.length; i++) {
     const record = event.Records[i];
     if (record.eventName == "INSERT") {
-      const ddbTable = tableName(record);
+      const ddbTable = process.env.API_BILLING_BILLTABLE_NAME;
       const prefix = getSerialPrefix(record)
       const owner = getOwner(record);
       const last = await queryLastSerialnum(ddb, ddbTable, owner, prefix);
@@ -24,12 +24,6 @@ exports.handler = async (event) => {
     }
   }
 };
-
-// returns the table on which the event occurred
-tableName = (record) => {
-  ddbARN = record['eventSourceARN'];
-  return ddbARN.split(':')[5].split('/')[1];
-}
 
 // returns the prefix YYYYMM from the creation date YYYY-MM-dd...:
 getSerialPrefix = (record) => {
