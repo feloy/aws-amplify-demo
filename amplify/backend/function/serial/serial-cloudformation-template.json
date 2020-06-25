@@ -13,10 +13,6 @@
 		"apibillingGraphQLAPIIdOutput": {
 			"Type": "String",
 			"Default": "apibillingGraphQLAPIIdOutput"
-		},
-		"apibillingGraphQLAPIEndpointOutput": {
-			"Type": "String",
-			"Default": "apibillingGraphQLAPIEndpointOutput"
 		}
 	},
 	"Conditions": {
@@ -41,12 +37,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"serialnum",
+						"serial",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"serialnum",
+									"serial",
 									"-",
 									{
 										"Ref": "env"
@@ -63,6 +59,35 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"API_BILLING_BILLTABLE_NAME": {
+							"Fn::ImportValue": {
+								"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:Name"
+							}
+						},
+						"API_BILLING_BILLTABLE_ARN": {
+							"Fn::Join": [
+								"",
+								[
+									"arn:aws:dynamodb:",
+									{
+										"Ref": "AWS::Region"
+									},
+									":",
+									{
+										"Ref": "AWS::AccountId"
+									},
+									":table/",
+									{
+										"Fn::ImportValue": {
+											"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:Name"
+										}
+									}
+								]
+							]
+						},
+						"API_BILLING_GRAPHQLAPIIDOUTPUT": {
+							"Ref": "apibillingGraphQLAPIIdOutput"
 						}
 					}
 				},
@@ -76,7 +101,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-billing-dev-153840-deployment",
-					"S3Key": "amplify-builds/serialnum-6e65665134694a416456-build.zip"
+					"S3Key": "amplify-builds/serial-576f4535367378465033-build.zip"
 				}
 			}
 		},
@@ -86,12 +111,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"billingLambdaRole149c09da",
+						"billingLambdaRolea5a659ec",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"billingLambdaRole149c09da",
+									"billingLambdaRolea5a659ec",
 									"-",
 									{
 										"Ref": "env"
@@ -162,6 +187,83 @@
 				}
 			}
 		},
+		"AmplifyResourcesPolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "amplify-lambda-execution-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:Get*",
+								"dynamodb:BatchGetItem",
+								"dynamodb:List*",
+								"dynamodb:Describe*",
+								"dynamodb:Scan",
+								"dynamodb:Query",
+								"dynamodb:Update*",
+								"dynamodb:RestoreTable*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:Name"
+												}
+											}
+										]
+									]
+								},
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:Name"
+												}
+											},
+											"/index/*"
+										]
+									]
+								}
+							]
+						}
+					]
+				}
+			}
+		},
 		"LambdaTriggerPolicyBill": {
 			"DependsOn": [
 				"LambdaExecutionRole"
@@ -190,16 +292,6 @@
 									"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:StreamArn"
 								}
 							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:GetItem",
-								"dynamodb:Query",
-								"dynamodb:Scan",
-								"dynamodb:UpdateItem"
-							],
-							"Resource": "*"
 						}
 					]
 				}

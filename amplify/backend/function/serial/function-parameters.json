@@ -1,0 +1,10 @@
+{
+    "permissions": {
+        "storage": {
+            "Bill:@model(appsync)": [
+                "read",
+                "update"
+            ]
+        }
+    }
+}
