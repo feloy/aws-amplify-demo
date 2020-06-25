@@ -8,17 +8,23 @@ type Customer
   siret: String
   bills: [Bill] @connection(keyName: "byCustomer", fields: ["id"])
 }
+
 type Bill
 @model
 @auth(rules: [{allow: owner}])
 @key(name: "byCustomer", fields: ["customerID"])
+@key(name: "byOwnerCreation", fields: ["owner", "createdAt"])
 {
   id: ID!
+  serialnum: String
   title: String!
   customerID: ID!
   customer: Customer @connection(fields: ["customerID"])
   lines: [Line] @connection(keyName: "byBill", fields: ["id"])
+  createdAt: AWSDateTime!
+  owner: String
 }
+
 type Line
 @model
 @auth(rules: [{allow: owner}])

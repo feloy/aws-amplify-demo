@@ -1,6 +1,6 @@
 <mat-nav-list>
     <a *ngFor="let bill of bills" mat-list-item [routerLink]="['/bill-lines', bill.id]">
-        <h3 matLine>{{bill.createdAt | date:'shortDate'}} - {{bill.title}}</h3>
+        <h3 matLine><span *ngIf="bill.serialnum">{{bill.serialnum}} - </span>{{bill.createdAt | date:'shortDate'}} - {{bill.title}}</h3>
         <p matLine>{{bill.customer?.name}}</p>
     </a>
 </mat-nav-list>

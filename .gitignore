@@ -45,6 +45,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
+/cypress/videos
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -60,4 +62,3 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
-/cypress/videos

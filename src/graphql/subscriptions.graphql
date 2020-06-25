@@ -8,11 +8,12 @@ subscription OnCreateCustomer($owner: String!) {
     bills {
       items {
         id
+        serialnum
         title
         customerID
         createdAt
-        updatedAt
         owner
+        updatedAt
       }
       nextToken
     }
@@ -30,11 +31,12 @@ subscription OnUpdateCustomer($owner: String!) {
     bills {
       items {
         id
+        serialnum
         title
         customerID
         createdAt
-        updatedAt
         owner
+        updatedAt
       }
       nextToken
     }
@@ -52,11 +54,12 @@ subscription OnDeleteCustomer($owner: String!) {
     bills {
       items {
         id
+        serialnum
         title
         customerID
         createdAt
-        updatedAt
         owner
+        updatedAt
       }
       nextToken
     }
@@ -68,6 +71,7 @@ subscription OnDeleteCustomer($owner: String!) {
 subscription OnCreateBill($owner: String!) {
   onCreateBill(owner: $owner) {
     id
+    serialnum
     title
     customerID
     customer {
@@ -96,13 +100,14 @@ subscription OnCreateBill($owner: String!) {
       nextToken
     }
     createdAt
-    updatedAt
     owner
+    updatedAt
   }
 }
 subscription OnUpdateBill($owner: String!) {
   onUpdateBill(owner: $owner) {
     id
+    serialnum
     title
     customerID
     customer {
@@ -131,13 +136,14 @@ subscription OnUpdateBill($owner: String!) {
       nextToken
     }
     createdAt
-    updatedAt
     owner
+    updatedAt
   }
 }
 subscription OnDeleteBill($owner: String!) {
   onDeleteBill(owner: $owner) {
     id
+    serialnum
     title
     customerID
     customer {
@@ -166,8 +172,8 @@ subscription OnDeleteBill($owner: String!) {
       nextToken
     }
     createdAt
-    updatedAt
     owner
+    updatedAt
   }
 }
 subscription OnCreateLine($owner: String!) {
@@ -176,6 +182,7 @@ subscription OnCreateLine($owner: String!) {
     billID
     bill {
       id
+      serialnum
       title
       customerID
       customer {
@@ -191,8 +198,8 @@ subscription OnCreateLine($owner: String!) {
         nextToken
       }
       createdAt
-      updatedAt
       owner
+      updatedAt
     }
     title
     quantity
@@ -208,6 +215,7 @@ subscription OnUpdateLine($owner: String!) {
     billID
     bill {
       id
+      serialnum
       title
       customerID
       customer {
@@ -223,8 +231,8 @@ subscription OnUpdateLine($owner: String!) {
         nextToken
       }
       createdAt
-      updatedAt
       owner
+      updatedAt
     }
     title
     quantity
@@ -240,6 +248,7 @@ subscription OnDeleteLine($owner: String!) {
     billID
     bill {
       id
+      serialnum
       title
       customerID
       customer {
@@ -255,8 +264,8 @@ subscription OnDeleteLine($owner: String!) {
         nextToken
       }
       createdAt
-      updatedAt
       owner
+      updatedAt
     }
     title
     quantity

@@ -74,13 +74,18 @@ export type DeleteCustomerInput = {
 
 export type CreateBillInput = {
   id?: string | null;
+  serialnum?: string | null;
   title: string;
   customerID: string;
+  createdAt?: string | null;
+  owner?: string | null;
 };
 
 export type ModelBillConditionInput = {
+  serialnum?: ModelStringInput | null;
   title?: ModelStringInput | null;
   customerID?: ModelIDInput | null;
+  createdAt?: ModelStringInput | null;
   and?: Array<ModelBillConditionInput | null> | null;
   or?: Array<ModelBillConditionInput | null> | null;
   not?: ModelBillConditionInput | null;
@@ -104,8 +109,11 @@ export type ModelIDInput = {
 
 export type UpdateBillInput = {
   id: string;
+  serialnum?: string | null;
   title?: string | null;
   customerID?: string | null;
+  createdAt?: string | null;
+  owner?: string | null;
 };
 
 export type DeleteBillInput = {
@@ -178,8 +186,11 @@ export type ModelCustomerFilterInput = {
 
 export type ModelBillFilterInput = {
   id?: ModelIDInput | null;
+  serialnum?: ModelStringInput | null;
   title?: ModelStringInput | null;
   customerID?: ModelIDInput | null;
+  createdAt?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelBillFilterInput | null> | null;
   or?: Array<ModelBillFilterInput | null> | null;
   not?: ModelBillFilterInput | null;
@@ -207,11 +218,12 @@ export type CreateCustomerMutation = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -231,11 +243,12 @@ export type UpdateCustomerMutation = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -255,11 +268,12 @@ export type DeleteCustomerMutation = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -271,6 +285,7 @@ export type DeleteCustomerMutation = {
 export type CreateBillMutation = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -303,13 +318,14 @@ export type CreateBillMutation = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type UpdateBillMutation = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -342,13 +358,14 @@ export type UpdateBillMutation = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type DeleteBillMutation = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -381,8 +398,8 @@ export type DeleteBillMutation = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type CreateLineMutation = {
@@ -392,6 +409,7 @@ export type CreateLineMutation = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -409,8 +427,8 @@ export type CreateLineMutation = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -427,6 +445,7 @@ export type UpdateLineMutation = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -444,8 +463,8 @@ export type UpdateLineMutation = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -462,6 +481,7 @@ export type DeleteLineMutation = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -479,8 +499,8 @@ export type DeleteLineMutation = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -501,11 +521,12 @@ export type GetCustomerQuery = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -536,6 +557,7 @@ export type ListCustomersQuery = {
 export type GetBillQuery = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -568,8 +590,8 @@ export type GetBillQuery = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type ListBillsQuery = {
@@ -577,6 +599,7 @@ export type ListBillsQuery = {
   items: Array<{
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -594,8 +617,8 @@ export type ListBillsQuery = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null> | null;
   nextToken: string | null;
 };
@@ -607,6 +630,7 @@ export type GetLineQuery = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -624,8 +648,8 @@ export type GetLineQuery = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -644,11 +668,12 @@ export type ListLinesQuery = {
     bill: {
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null;
     title: string;
     quantity: number;
@@ -671,11 +696,12 @@ export type OnCreateCustomerSubscription = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -695,11 +721,12 @@ export type OnUpdateCustomerSubscription = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -719,11 +746,12 @@ export type OnDeleteCustomerSubscription = {
     items: Array<{
       __typename: "Bill";
       id: string;
+      serialnum: string | null;
       title: string;
       customerID: string;
       createdAt: string;
-      updatedAt: string;
       owner: string | null;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -735,6 +763,7 @@ export type OnDeleteCustomerSubscription = {
 export type OnCreateBillSubscription = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -767,13 +796,14 @@ export type OnCreateBillSubscription = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type OnUpdateBillSubscription = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -806,13 +836,14 @@ export type OnUpdateBillSubscription = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type OnDeleteBillSubscription = {
   __typename: "Bill";
   id: string;
+  serialnum: string | null;
   title: string;
   customerID: string;
   customer: {
@@ -845,8 +876,8 @@ export type OnDeleteBillSubscription = {
     nextToken: string | null;
   } | null;
   createdAt: string;
-  updatedAt: string;
   owner: string | null;
+  updatedAt: string;
 };
 
 export type OnCreateLineSubscription = {
@@ -856,6 +887,7 @@ export type OnCreateLineSubscription = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -873,8 +905,8 @@ export type OnCreateLineSubscription = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -891,6 +923,7 @@ export type OnUpdateLineSubscription = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -908,8 +941,8 @@ export type OnUpdateLineSubscription = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -926,6 +959,7 @@ export type OnDeleteLineSubscription = {
   bill: {
     __typename: "Bill";
     id: string;
+    serialnum: string | null;
     title: string;
     customerID: string;
     customer: {
@@ -943,8 +977,8 @@ export type OnDeleteLineSubscription = {
       nextToken: string | null;
     } | null;
     createdAt: string;
-    updatedAt: string;
     owner: string | null;
+    updatedAt: string;
   } | null;
   title: string;
   quantity: number;
@@ -974,11 +1008,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1014,11 +1049,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1054,11 +1090,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1086,6 +1123,7 @@ export class APIService {
         createBill(input: $input, condition: $condition) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1118,8 +1156,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1141,6 +1179,7 @@ export class APIService {
         updateBill(input: $input, condition: $condition) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1173,8 +1212,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1196,6 +1235,7 @@ export class APIService {
         deleteBill(input: $input, condition: $condition) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1228,8 +1268,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1255,6 +1295,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1272,8 +1313,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1306,6 +1347,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1323,8 +1365,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1357,6 +1399,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1374,8 +1417,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1409,11 +1452,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1475,6 +1519,7 @@ export class APIService {
         getBill(id: $id) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1507,8 +1552,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1530,6 +1575,7 @@ export class APIService {
           items {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1547,8 +1593,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           nextToken
         }
@@ -1577,6 +1623,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1594,8 +1641,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1628,11 +1675,12 @@ export class APIService {
             bill {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             title
             quantity
@@ -1675,11 +1723,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1707,11 +1756,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1739,11 +1789,12 @@ export class APIService {
             items {
               __typename
               id
+              serialnum
               title
               customerID
               createdAt
-              updatedAt
               owner
+              updatedAt
             }
             nextToken
           }
@@ -1761,6 +1812,7 @@ export class APIService {
         onCreateBill(owner: $owner) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1793,8 +1845,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`
     )
@@ -1806,6 +1858,7 @@ export class APIService {
         onUpdateBill(owner: $owner) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1838,8 +1891,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`
     )
@@ -1851,6 +1904,7 @@ export class APIService {
         onDeleteBill(owner: $owner) {
           __typename
           id
+          serialnum
           title
           customerID
           customer {
@@ -1883,8 +1937,8 @@ export class APIService {
             nextToken
           }
           createdAt
-          updatedAt
           owner
+          updatedAt
         }
       }`
     )
@@ -1900,6 +1954,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1917,8 +1972,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1941,6 +1996,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1958,8 +2014,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity
@@ -1982,6 +2038,7 @@ export class APIService {
           bill {
             __typename
             id
+            serialnum
             title
             customerID
             customer {
@@ -1999,8 +2056,8 @@ export class APIService {
               nextToken
             }
             createdAt
-            updatedAt
             owner
+            updatedAt
           }
           title
           quantity

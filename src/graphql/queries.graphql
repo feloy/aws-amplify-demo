@@ -8,11 +8,12 @@ query GetCustomer($id: ID!) {
     bills {
       items {
         id
+        serialnum
         title
         customerID
         createdAt
-        updatedAt
         owner
+        updatedAt
       }
       nextToken
     }
@@ -45,6 +46,7 @@ query ListCustomers(
 query GetBill($id: ID!) {
   getBill(id: $id) {
     id
+    serialnum
     title
     customerID
     customer {
@@ -73,8 +75,8 @@ query GetBill($id: ID!) {
       nextToken
     }
     createdAt
-    updatedAt
     owner
+    updatedAt
   }
 }
 query ListBills(
@@ -85,6 +87,7 @@ query ListBills(
   listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      serialnum
       title
       customerID
       customer {
@@ -100,8 +103,8 @@ query ListBills(
         nextToken
       }
       createdAt
-      updatedAt
       owner
+      updatedAt
     }
     nextToken
   }
@@ -112,6 +115,7 @@ query GetLine($id: ID!) {
     billID
     bill {
       id
+      serialnum
       title
       customerID
       customer {
@@ -127,8 +131,8 @@ query GetLine($id: ID!) {
         nextToken
       }
       createdAt
-      updatedAt
       owner
+      updatedAt
     }
     title
     quantity
@@ -149,11 +153,12 @@ query ListLines(
       billID
       bill {
         id
+        serialnum
         title
         customerID
         createdAt
-        updatedAt
         owner
+        updatedAt
       }
       title
       quantity
