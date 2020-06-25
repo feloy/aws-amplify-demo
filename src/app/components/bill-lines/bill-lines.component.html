@@ -1,8 +1,9 @@
 <div *ngIf="bill">
-    <div>{{bill.customer.name}}</div>
+    <div>Customer: {{bill.customer.name}}</div>
     <div>{{bill.customer.address}}</div>
     <div>Title : {{bill.title}}</div>
     <div>Creation date : {{bill.createdAt | date:'shortDate'}}</div>
+    <div *ngIf="bill.serialnum"># {{bill.serialnum}}</div>
     <form [formGroup]="form">
         <table>
             <tr>

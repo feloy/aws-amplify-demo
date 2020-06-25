@@ -14,7 +14,12 @@ export class BillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.ListBills().then((list: ListBillsQuery) => {
-      this.bills = list.items;
+      this.bills = list.items.sort(this.byCreatedAt);
     });
+  }
+
+  // sort by createdAt, newest first
+  byCreatedAt(a, b) {
+    return a.createdAt < b.createdAt ? 1 : -1;
   }
 }

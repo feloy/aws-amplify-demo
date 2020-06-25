@@ -15,8 +15,12 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.ListCustomers().then((list: ListCustomersQuery) => {
-      this.customers = list.items;
+      this.customers = list.items.sort(this.byName);
     });
   }
 
+  // Sort by name alphabetically
+  byName(a, b) {
+    return a.name < b.name ? -1 : 1;
+  }
 }
