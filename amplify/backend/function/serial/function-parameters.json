@@ -1,9 +1,19 @@
 {
     "permissions": {
+        "api": {
+            "billing": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
         "storage": {
             "Bill:@model(appsync)": [
+                "create",
                 "read",
-                "update"
+                "update",
+                "delete"
             ]
         }
     }

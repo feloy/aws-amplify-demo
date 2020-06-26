@@ -5,6 +5,9 @@ query GetCustomer($id: ID!) {
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -17,9 +20,6 @@ query GetCustomer($id: ID!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 query ListCustomers(
@@ -33,78 +33,12 @@ query ListCustomers(
       name
       address
       siret
+      createdAt
+      updatedAt
+      owner
       bills {
         nextToken
       }
-      createdAt
-      updatedAt
-      owner
-    }
-    nextToken
-  }
-}
-query GetBill($id: ID!) {
-  getBill(id: $id) {
-    id
-    serialnum
-    title
-    customerID
-    customer {
-      id
-      name
-      address
-      siret
-      bills {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    lines {
-      items {
-        id
-        billID
-        title
-        quantity
-        cost
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-    createdAt
-    owner
-    updatedAt
-  }
-}
-query ListBills(
-  $filter: ModelBillFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
     }
     nextToken
   }
@@ -113,6 +47,11 @@ query GetLine($id: ID!) {
   getLine(id: $id) {
     id
     billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
     bill {
       id
       serialnum
@@ -134,11 +73,6 @@ query GetLine($id: ID!) {
       owner
       updatedAt
     }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
     owner
   }
 }
@@ -151,6 +85,11 @@ query ListLines(
     items {
       id
       billID
+      title
+      quantity
+      cost
+      createdAt
+      updatedAt
       bill {
         id
         serialnum
@@ -160,11 +99,6 @@ query ListLines(
         owner
         updatedAt
       }
-      title
-      quantity
-      cost
-      createdAt
-      updatedAt
       owner
     }
     nextToken
@@ -203,5 +137,71 @@ query ListUsers(
       owner
     }
     nextToken
+  }
+}
+query ListBills(
+  $filter: ModelBillFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetBill($id: ID!) {
+  getBill(id: $id) {
+    id
+    serialnum
+    title
+    customerID
+    customer {
+      id
+      name
+      address
+      siret
+      createdAt
+      updatedAt
+      owner
+      bills {
+        nextToken
+      }
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    owner
+    updatedAt
   }
 }

@@ -13,6 +13,10 @@
 		"apibillingGraphQLAPIIdOutput": {
 			"Type": "String",
 			"Default": "apibillingGraphQLAPIIdOutput"
+		},
+		"apibillingGraphQLAPIEndpointOutput": {
+			"Type": "String",
+			"Default": "apibillingGraphQLAPIEndpointOutput"
 		}
 	},
 	"Conditions": {
@@ -88,6 +92,9 @@
 						},
 						"API_BILLING_GRAPHQLAPIIDOUTPUT": {
 							"Ref": "apibillingGraphQLAPIIdOutput"
+						},
+						"API_BILLING_GRAPHQLAPIENDPOINTOUTPUT": {
+							"Ref": "apibillingGraphQLAPIEndpointOutput"
 						}
 					}
 				},
@@ -101,7 +108,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-billing-user-173435-deployment",
-					"S3Key": "amplify-builds/serial-6a5344594a7456306b31-build.zip"
+					"S3Key": "amplify-builds/serial-2f38736f6c534f30464a-build.zip"
 				}
 			}
 		},
@@ -205,6 +212,43 @@
 						{
 							"Effect": "Allow",
 							"Action": [
+								"appsync:Create*",
+								"appsync:StartSchemaCreation",
+								"appsync:GraphQL",
+								"appsync:Get*",
+								"appsync:List*",
+								"appsync:Update*",
+								"appsync:Delete*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:appsync:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":apis/",
+											{
+												"Ref": "apibillingGraphQLAPIIdOutput"
+											},
+											"/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:Put*",
+								"dynamodb:Create*",
+								"dynamodb:BatchWriteItem",
 								"dynamodb:Get*",
 								"dynamodb:BatchGetItem",
 								"dynamodb:List*",
@@ -212,7 +256,8 @@
 								"dynamodb:Scan",
 								"dynamodb:Query",
 								"dynamodb:Update*",
-								"dynamodb:RestoreTable*"
+								"dynamodb:RestoreTable*",
+								"dynamodb:Delete*"
 							],
 							"Resource": [
 								{

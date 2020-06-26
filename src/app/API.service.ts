@@ -72,54 +72,6 @@ export type DeleteCustomerInput = {
   id?: string | null;
 };
 
-export type CreateBillInput = {
-  id?: string | null;
-  serialnum?: string | null;
-  title: string;
-  customerID: string;
-  createdAt?: string | null;
-  owner?: string | null;
-};
-
-export type ModelBillConditionInput = {
-  serialnum?: ModelStringInput | null;
-  title?: ModelStringInput | null;
-  customerID?: ModelIDInput | null;
-  createdAt?: ModelStringInput | null;
-  and?: Array<ModelBillConditionInput | null> | null;
-  or?: Array<ModelBillConditionInput | null> | null;
-  not?: ModelBillConditionInput | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
-};
-
-export type UpdateBillInput = {
-  id: string;
-  serialnum?: string | null;
-  title?: string | null;
-  customerID?: string | null;
-  createdAt?: string | null;
-  owner?: string | null;
-};
-
-export type DeleteBillInput = {
-  id?: string | null;
-};
-
 export type CreateLineInput = {
   id?: string | null;
   billID: string;
@@ -136,6 +88,22 @@ export type ModelLineConditionInput = {
   and?: Array<ModelLineConditionInput | null> | null;
   or?: Array<ModelLineConditionInput | null> | null;
   not?: ModelLineConditionInput | null;
+};
+
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
 };
 
 export type ModelIntInput = {
@@ -210,6 +178,38 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
+export type CreateBillInput = {
+  id?: string | null;
+  serialnum?: string | null;
+  title: string;
+  customerID: string;
+  createdAt?: string | null;
+  owner?: string | null;
+};
+
+export type ModelBillConditionInput = {
+  serialnum?: ModelStringInput | null;
+  title?: ModelStringInput | null;
+  customerID?: ModelIDInput | null;
+  createdAt?: ModelStringInput | null;
+  and?: Array<ModelBillConditionInput | null> | null;
+  or?: Array<ModelBillConditionInput | null> | null;
+  not?: ModelBillConditionInput | null;
+};
+
+export type UpdateBillInput = {
+  id: string;
+  serialnum?: string | null;
+  title?: string | null;
+  customerID?: string | null;
+  createdAt?: string | null;
+  owner?: string | null;
+};
+
+export type DeleteBillInput = {
+  id?: string | null;
+};
+
 export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -218,18 +218,6 @@ export type ModelCustomerFilterInput = {
   and?: Array<ModelCustomerFilterInput | null> | null;
   or?: Array<ModelCustomerFilterInput | null> | null;
   not?: ModelCustomerFilterInput | null;
-};
-
-export type ModelBillFilterInput = {
-  id?: ModelIDInput | null;
-  serialnum?: ModelStringInput | null;
-  title?: ModelStringInput | null;
-  customerID?: ModelIDInput | null;
-  createdAt?: ModelStringInput | null;
-  owner?: ModelStringInput | null;
-  and?: Array<ModelBillFilterInput | null> | null;
-  or?: Array<ModelBillFilterInput | null> | null;
-  not?: ModelBillFilterInput | null;
 };
 
 export type ModelLineFilterInput = {
@@ -256,12 +244,27 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null;
 };
 
+export type ModelBillFilterInput = {
+  id?: ModelIDInput | null;
+  serialnum?: ModelStringInput | null;
+  title?: ModelStringInput | null;
+  customerID?: ModelIDInput | null;
+  createdAt?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
+  and?: Array<ModelBillFilterInput | null> | null;
+  or?: Array<ModelBillFilterInput | null> | null;
+  not?: ModelBillFilterInput | null;
+};
+
 export type CreateCustomerMutation = {
   __typename: "Customer";
   id: string;
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -276,9 +279,6 @@ export type CreateCustomerMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
 };
 
 export type UpdateCustomerMutation = {
@@ -287,6 +287,9 @@ export type UpdateCustomerMutation = {
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -301,9 +304,6 @@ export type UpdateCustomerMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
 };
 
 export type DeleteCustomerMutation = {
@@ -312,6 +312,9 @@ export type DeleteCustomerMutation = {
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -326,135 +329,17 @@ export type DeleteCustomerMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
-};
-
-export type CreateBillMutation = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
-};
-
-export type UpdateBillMutation = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
-};
-
-export type DeleteBillMutation = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
 };
 
 export type CreateLineMutation = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -479,11 +364,6 @@ export type CreateLineMutation = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -491,6 +371,11 @@ export type UpdateLineMutation = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -515,11 +400,6 @@ export type UpdateLineMutation = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -527,6 +407,11 @@ export type DeleteLineMutation = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -551,11 +436,6 @@ export type DeleteLineMutation = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -601,51 +481,7 @@ export type DeleteUserMutation = {
   owner: string | null;
 };
 
-export type GetCustomerQuery = {
-  __typename: "Customer";
-  id: string;
-  name: string;
-  address: string | null;
-  siret: string | null;
-  bills: {
-    __typename: "ModelBillConnection";
-    items: Array<{
-      __typename: "Bill";
-      id: string;
-      serialnum: string | null;
-      title: string;
-      customerID: string;
-      createdAt: string;
-      owner: string | null;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
-};
-
-export type ListCustomersQuery = {
-  __typename: "ModelCustomerConnection";
-  items: Array<{
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type GetBillQuery = {
+export type CreateBillMutation = {
   __typename: "Bill";
   id: string;
   serialnum: string | null;
@@ -657,13 +493,13 @@ export type GetBillQuery = {
     name: string;
     address: string | null;
     siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
     bills: {
       __typename: "ModelBillConnection";
       nextToken: string | null;
     } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
   } | null;
   lines: {
     __typename: "ModelLineConnection";
@@ -685,31 +521,126 @@ export type GetBillQuery = {
   updatedAt: string;
 };
 
-export type ListBillsQuery = {
-  __typename: "ModelBillConnection";
-  items: Array<{
-    __typename: "Bill";
+export type UpdateBillMutation = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
     id: string;
-    serialnum: string | null;
-    title: string;
-    customerID: string;
-    customer: {
-      __typename: "Customer";
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
       id: string;
-      name: string;
-      address: string | null;
-      siret: string | null;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
       createdAt: string;
       updatedAt: string;
       owner: string | null;
-    } | null;
-    lines: {
-      __typename: "ModelLineConnection";
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
+export type DeleteBillMutation = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
       nextToken: string | null;
     } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
+      id: string;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
+export type GetCustomerQuery = {
+  __typename: "Customer";
+  id: string;
+  name: string;
+  address: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+  bills: {
+    __typename: "ModelBillConnection";
+    items: Array<{
+      __typename: "Bill";
+      id: string;
+      serialnum: string | null;
+      title: string;
+      customerID: string;
+      createdAt: string;
+      owner: string | null;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type ListCustomersQuery = {
+  __typename: "ModelCustomerConnection";
+  items: Array<{
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
     createdAt: string;
-    owner: string | null;
     updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -718,6 +649,11 @@ export type GetLineQuery = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -742,11 +678,6 @@ export type GetLineQuery = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -756,6 +687,11 @@ export type ListLinesQuery = {
     __typename: "Line";
     id: string;
     billID: string;
+    title: string;
+    quantity: number;
+    cost: number;
+    createdAt: string;
+    updatedAt: string;
     bill: {
       __typename: "Bill";
       id: string;
@@ -766,11 +702,6 @@ export type ListLinesQuery = {
       owner: string | null;
       updatedAt: string;
     } | null;
-    title: string;
-    quantity: number;
-    cost: number;
-    createdAt: string;
-    updatedAt: string;
     owner: string | null;
   } | null> | null;
   nextToken: string | null;
@@ -808,12 +739,84 @@ export type ListUsersQuery = {
   nextToken: string | null;
 };
 
+export type ListBillsQuery = {
+  __typename: "ModelBillConnection";
+  items: Array<{
+    __typename: "Bill";
+    id: string;
+    serialnum: string | null;
+    title: string;
+    customerID: string;
+    customer: {
+      __typename: "Customer";
+      id: string;
+      name: string;
+      address: string | null;
+      siret: string | null;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null;
+    lines: {
+      __typename: "ModelLineConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    owner: string | null;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetBillQuery = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
+      id: string;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
 export type OnCreateCustomerSubscription = {
   __typename: "Customer";
   id: string;
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -828,9 +831,6 @@ export type OnCreateCustomerSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
 };
 
 export type OnUpdateCustomerSubscription = {
@@ -839,6 +839,9 @@ export type OnUpdateCustomerSubscription = {
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -853,9 +856,6 @@ export type OnUpdateCustomerSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
 };
 
 export type OnDeleteCustomerSubscription = {
@@ -864,6 +864,9 @@ export type OnDeleteCustomerSubscription = {
   name: string;
   address: string | null;
   siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
   bills: {
     __typename: "ModelBillConnection";
     items: Array<{
@@ -878,135 +881,17 @@ export type OnDeleteCustomerSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-  owner: string | null;
-};
-
-export type OnCreateBillSubscription = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
-};
-
-export type OnUpdateBillSubscription = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
-};
-
-export type OnDeleteBillSubscription = {
-  __typename: "Bill";
-  id: string;
-  serialnum: string | null;
-  title: string;
-  customerID: string;
-  customer: {
-    __typename: "Customer";
-    id: string;
-    name: string;
-    address: string | null;
-    siret: string | null;
-    bills: {
-      __typename: "ModelBillConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner: string | null;
-  } | null;
-  lines: {
-    __typename: "ModelLineConnection";
-    items: Array<{
-      __typename: "Line";
-      id: string;
-      billID: string;
-      title: string;
-      quantity: number;
-      cost: number;
-      createdAt: string;
-      updatedAt: string;
-      owner: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  owner: string | null;
-  updatedAt: string;
 };
 
 export type OnCreateLineSubscription = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -1031,11 +916,6 @@ export type OnCreateLineSubscription = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -1043,6 +923,11 @@ export type OnUpdateLineSubscription = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -1067,11 +952,6 @@ export type OnUpdateLineSubscription = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -1079,6 +959,11 @@ export type OnDeleteLineSubscription = {
   __typename: "Line";
   id: string;
   billID: string;
+  title: string;
+  quantity: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
   bill: {
     __typename: "Bill";
     id: string;
@@ -1103,11 +988,6 @@ export type OnDeleteLineSubscription = {
     owner: string | null;
     updatedAt: string;
   } | null;
-  title: string;
-  quantity: number;
-  cost: number;
-  createdAt: string;
-  updatedAt: string;
   owner: string | null;
 };
 
@@ -1153,6 +1033,126 @@ export type OnDeleteUserSubscription = {
   owner: string | null;
 };
 
+export type OnCreateBillSubscription = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
+      id: string;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
+export type OnUpdateBillSubscription = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
+      id: string;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
+export type OnDeleteBillSubscription = {
+  __typename: "Bill";
+  id: string;
+  serialnum: string | null;
+  title: string;
+  customerID: string;
+  customer: {
+    __typename: "Customer";
+    id: string;
+    name: string;
+    address: string | null;
+    siret: string | null;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+    bills: {
+      __typename: "ModelBillConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  lines: {
+    __typename: "ModelLineConnection";
+    items: Array<{
+      __typename: "Line";
+      id: string;
+      billID: string;
+      title: string;
+      quantity: number;
+      cost: number;
+      createdAt: string;
+      updatedAt: string;
+      owner: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  owner: string | null;
+  updatedAt: string;
+};
+
 @Injectable({
   providedIn: "root"
 })
@@ -1168,6 +1168,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -1182,9 +1185,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1209,6 +1209,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -1223,9 +1226,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1250,6 +1250,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -1264,9 +1267,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1280,174 +1280,6 @@ export class APIService {
     )) as any;
     return <DeleteCustomerMutation>response.data.deleteCustomer;
   }
-  async CreateBill(
-    input: CreateBillInput,
-    condition?: ModelBillConditionInput
-  ): Promise<CreateBillMutation> {
-    const statement = `mutation CreateBill($input: CreateBillInput!, $condition: ModelBillConditionInput) {
-        createBill(input: $input, condition: $condition) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateBillMutation>response.data.createBill;
-  }
-  async UpdateBill(
-    input: UpdateBillInput,
-    condition?: ModelBillConditionInput
-  ): Promise<UpdateBillMutation> {
-    const statement = `mutation UpdateBill($input: UpdateBillInput!, $condition: ModelBillConditionInput) {
-        updateBill(input: $input, condition: $condition) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateBillMutation>response.data.updateBill;
-  }
-  async DeleteBill(
-    input: DeleteBillInput,
-    condition?: ModelBillConditionInput
-  ): Promise<DeleteBillMutation> {
-    const statement = `mutation DeleteBill($input: DeleteBillInput!, $condition: ModelBillConditionInput) {
-        deleteBill(input: $input, condition: $condition) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteBillMutation>response.data.deleteBill;
-  }
   async CreateLine(
     input: CreateLineInput,
     condition?: ModelLineConditionInput
@@ -1457,6 +1289,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -1481,11 +1318,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`;
@@ -1509,6 +1341,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -1533,11 +1370,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`;
@@ -1561,6 +1393,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -1585,11 +1422,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`;
@@ -1694,6 +1526,174 @@ export class APIService {
     )) as any;
     return <DeleteUserMutation>response.data.deleteUser;
   }
+  async CreateBill(
+    input: CreateBillInput,
+    condition?: ModelBillConditionInput
+  ): Promise<CreateBillMutation> {
+    const statement = `mutation CreateBill($input: CreateBillInput!, $condition: ModelBillConditionInput) {
+        createBill(input: $input, condition: $condition) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBillMutation>response.data.createBill;
+  }
+  async UpdateBill(
+    input: UpdateBillInput,
+    condition?: ModelBillConditionInput
+  ): Promise<UpdateBillMutation> {
+    const statement = `mutation UpdateBill($input: UpdateBillInput!, $condition: ModelBillConditionInput) {
+        updateBill(input: $input, condition: $condition) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBillMutation>response.data.updateBill;
+  }
+  async DeleteBill(
+    input: DeleteBillInput,
+    condition?: ModelBillConditionInput
+  ): Promise<DeleteBillMutation> {
+    const statement = `mutation DeleteBill($input: DeleteBillInput!, $condition: ModelBillConditionInput) {
+        deleteBill(input: $input, condition: $condition) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBillMutation>response.data.deleteBill;
+  }
   async GetCustomer(id: string): Promise<GetCustomerQuery> {
     const statement = `query GetCustomer($id: ID!) {
         getCustomer(id: $id) {
@@ -1702,6 +1702,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -1716,9 +1719,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1743,13 +1743,13 @@ export class APIService {
             name
             address
             siret
+            createdAt
+            updatedAt
+            owner
             bills {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
-            owner
           }
           nextToken
         }
@@ -1769,112 +1769,17 @@ export class APIService {
     )) as any;
     return <ListCustomersQuery>response.data.listCustomers;
   }
-  async GetBill(id: string): Promise<GetBillQuery> {
-    const statement = `query GetBill($id: ID!) {
-        getBill(id: $id) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetBillQuery>response.data.getBill;
-  }
-  async ListBills(
-    filter?: ModelBillFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListBillsQuery> {
-    const statement = `query ListBills($filter: ModelBillFilterInput, $limit: Int, $nextToken: String) {
-        listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            serialnum
-            title
-            customerID
-            customer {
-              __typename
-              id
-              name
-              address
-              siret
-              createdAt
-              updatedAt
-              owner
-            }
-            lines {
-              __typename
-              nextToken
-            }
-            createdAt
-            owner
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListBillsQuery>response.data.listBills;
-  }
   async GetLine(id: string): Promise<GetLineQuery> {
     const statement = `query GetLine($id: ID!) {
         getLine(id: $id) {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -1899,11 +1804,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`;
@@ -1927,6 +1827,11 @@ export class APIService {
             __typename
             id
             billID
+            title
+            quantity
+            cost
+            createdAt
+            updatedAt
             bill {
               __typename
               id
@@ -1937,11 +1842,6 @@ export class APIService {
               owner
               updatedAt
             }
-            title
-            quantity
-            cost
-            createdAt
-            updatedAt
             owner
           }
           nextToken
@@ -2025,6 +1925,106 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
+  async ListBills(
+    filter?: ModelBillFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListBillsQuery> {
+    const statement = `query ListBills($filter: ModelBillFilterInput, $limit: Int, $nextToken: String) {
+        listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            serialnum
+            title
+            customerID
+            customer {
+              __typename
+              id
+              name
+              address
+              siret
+              createdAt
+              updatedAt
+              owner
+            }
+            lines {
+              __typename
+              nextToken
+            }
+            createdAt
+            owner
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListBillsQuery>response.data.listBills;
+  }
+  async GetBill(id: string): Promise<GetBillQuery> {
+    const statement = `query GetBill($id: ID!) {
+        getBill(id: $id) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetBillQuery>response.data.getBill;
+  }
   OnCreateCustomerListener: Observable<
     OnCreateCustomerSubscription
   > = API.graphql(
@@ -2036,6 +2036,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -2050,9 +2053,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`
     )
@@ -2069,6 +2069,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -2083,9 +2086,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`
     )
@@ -2102,6 +2102,9 @@ export class APIService {
           name
           address
           siret
+          createdAt
+          updatedAt
+          owner
           bills {
             __typename
             items {
@@ -2116,151 +2119,10 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
-          owner
         }
       }`
     )
   ) as Observable<OnDeleteCustomerSubscription>;
-
-  OnCreateBillListener: Observable<OnCreateBillSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateBill($owner: String!) {
-        onCreateBill(owner: $owner) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateBillSubscription>;
-
-  OnUpdateBillListener: Observable<OnUpdateBillSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateBill($owner: String!) {
-        onUpdateBill(owner: $owner) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateBillSubscription>;
-
-  OnDeleteBillListener: Observable<OnDeleteBillSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteBill($owner: String!) {
-        onDeleteBill(owner: $owner) {
-          __typename
-          id
-          serialnum
-          title
-          customerID
-          customer {
-            __typename
-            id
-            name
-            address
-            siret
-            bills {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            owner
-          }
-          lines {
-            __typename
-            items {
-              __typename
-              id
-              billID
-              title
-              quantity
-              cost
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-          }
-          createdAt
-          owner
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteBillSubscription>;
 
   OnCreateLineListener: Observable<OnCreateLineSubscription> = API.graphql(
     graphqlOperation(
@@ -2269,6 +2131,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -2293,11 +2160,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`
@@ -2311,6 +2173,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -2335,11 +2202,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`
@@ -2353,6 +2215,11 @@ export class APIService {
           __typename
           id
           billID
+          title
+          quantity
+          cost
+          createdAt
+          updatedAt
           bill {
             __typename
             id
@@ -2377,11 +2244,6 @@ export class APIService {
             owner
             updatedAt
           }
-          title
-          quantity
-          cost
-          createdAt
-          updatedAt
           owner
         }
       }`
@@ -2447,4 +2309,142 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteUserSubscription>;
+
+  OnCreateBillListener: Observable<OnCreateBillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBill($owner: String!) {
+        onCreateBill(owner: $owner) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBillSubscription>;
+
+  OnUpdateBillListener: Observable<OnUpdateBillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBill($owner: String!) {
+        onUpdateBill(owner: $owner) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBillSubscription>;
+
+  OnDeleteBillListener: Observable<OnDeleteBillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBill($owner: String!) {
+        onDeleteBill(owner: $owner) {
+          __typename
+          id
+          serialnum
+          title
+          customerID
+          customer {
+            __typename
+            id
+            name
+            address
+            siret
+            createdAt
+            updatedAt
+            owner
+            bills {
+              __typename
+              nextToken
+            }
+          }
+          lines {
+            __typename
+            items {
+              __typename
+              id
+              billID
+              title
+              quantity
+              cost
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
+          createdAt
+          owner
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBillSubscription>;
 }

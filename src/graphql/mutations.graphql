@@ -8,6 +8,9 @@ mutation CreateCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -20,9 +23,6 @@ mutation CreateCustomer(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 mutation UpdateCustomer(
@@ -34,6 +34,9 @@ mutation UpdateCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -46,9 +49,6 @@ mutation UpdateCustomer(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 mutation DeleteCustomer(
@@ -60,6 +60,9 @@ mutation DeleteCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -72,126 +75,6 @@ mutation DeleteCustomer(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-mutation CreateBill(
-  $input: CreateBillInput!
-  $condition: ModelBillConditionInput
-) {
-  createBill(input: $input, condition: $condition) {
-    id
-    serialnum
-    title
-    customerID
-    customer {
-      id
-      name
-      address
-      siret
-      bills {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    lines {
-      items {
-        id
-        billID
-        title
-        quantity
-        cost
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-    createdAt
-    owner
-    updatedAt
-  }
-}
-mutation UpdateBill(
-  $input: UpdateBillInput!
-  $condition: ModelBillConditionInput
-) {
-  updateBill(input: $input, condition: $condition) {
-    id
-    serialnum
-    title
-    customerID
-    customer {
-      id
-      name
-      address
-      siret
-      bills {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    lines {
-      items {
-        id
-        billID
-        title
-        quantity
-        cost
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-    createdAt
-    owner
-    updatedAt
-  }
-}
-mutation DeleteBill(
-  $input: DeleteBillInput!
-  $condition: ModelBillConditionInput
-) {
-  deleteBill(input: $input, condition: $condition) {
-    id
-    serialnum
-    title
-    customerID
-    customer {
-      id
-      name
-      address
-      siret
-      bills {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    lines {
-      items {
-        id
-        billID
-        title
-        quantity
-        cost
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-    createdAt
-    owner
-    updatedAt
   }
 }
 mutation CreateLine(
@@ -201,6 +84,11 @@ mutation CreateLine(
   createLine(input: $input, condition: $condition) {
     id
     billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
     bill {
       id
       serialnum
@@ -222,11 +110,6 @@ mutation CreateLine(
       owner
       updatedAt
     }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
     owner
   }
 }
@@ -237,6 +120,11 @@ mutation UpdateLine(
   updateLine(input: $input, condition: $condition) {
     id
     billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
     bill {
       id
       serialnum
@@ -258,11 +146,6 @@ mutation UpdateLine(
       owner
       updatedAt
     }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
     owner
   }
 }
@@ -273,6 +156,11 @@ mutation DeleteLine(
   deleteLine(input: $input, condition: $condition) {
     id
     billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
     bill {
       id
       serialnum
@@ -294,11 +182,6 @@ mutation DeleteLine(
       owner
       updatedAt
     }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
     owner
   }
 }
@@ -351,5 +234,122 @@ mutation DeleteUser(
     createdAt
     updatedAt
     owner
+  }
+}
+mutation CreateBill(
+  $input: CreateBillInput!
+  $condition: ModelBillConditionInput
+) {
+  createBill(input: $input, condition: $condition) {
+    id
+    serialnum
+    title
+    customerID
+    customer {
+      id
+      name
+      address
+      siret
+      createdAt
+      updatedAt
+      owner
+      bills {
+        nextToken
+      }
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    owner
+    updatedAt
+  }
+}
+mutation UpdateBill(
+  $input: UpdateBillInput!
+  $condition: ModelBillConditionInput
+) {
+  updateBill(input: $input, condition: $condition) {
+    id
+    serialnum
+    title
+    customerID
+    customer {
+      id
+      name
+      address
+      siret
+      createdAt
+      updatedAt
+      owner
+      bills {
+        nextToken
+      }
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    owner
+    updatedAt
+  }
+}
+mutation DeleteBill(
+  $input: DeleteBillInput!
+  $condition: ModelBillConditionInput
+) {
+  deleteBill(input: $input, condition: $condition) {
+    id
+    serialnum
+    title
+    customerID
+    customer {
+      id
+      name
+      address
+      siret
+      createdAt
+      updatedAt
+      owner
+      bills {
+        nextToken
+      }
+    }
+    lines {
+      items {
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    owner
+    updatedAt
   }
 }
