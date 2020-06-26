@@ -1,0 +1,18 @@
+{
+    "permissions": {
+        "storage": {
+            "pdfstore": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "Bill:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}
