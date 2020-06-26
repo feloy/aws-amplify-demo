@@ -174,6 +174,42 @@ export type DeleteLineInput = {
   id?: string | null;
 };
 
+export type CreateUserInput = {
+  id?: string | null;
+  firstname?: string | null;
+  lastname?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  siret?: string | null;
+};
+
+export type ModelUserConditionInput = {
+  firstname?: ModelStringInput | null;
+  lastname?: ModelStringInput | null;
+  address?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  siret?: ModelStringInput | null;
+  and?: Array<ModelUserConditionInput | null> | null;
+  or?: Array<ModelUserConditionInput | null> | null;
+  not?: ModelUserConditionInput | null;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  firstname?: string | null;
+  lastname?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  siret?: string | null;
+};
+
+export type DeleteUserInput = {
+  id?: string | null;
+};
+
 export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -205,6 +241,19 @@ export type ModelLineFilterInput = {
   and?: Array<ModelLineFilterInput | null> | null;
   or?: Array<ModelLineFilterInput | null> | null;
   not?: ModelLineFilterInput | null;
+};
+
+export type ModelUserFilterInput = {
+  id?: ModelIDInput | null;
+  firstname?: ModelStringInput | null;
+  lastname?: ModelStringInput | null;
+  address?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  siret?: ModelStringInput | null;
+  and?: Array<ModelUserFilterInput | null> | null;
+  or?: Array<ModelUserFilterInput | null> | null;
+  not?: ModelUserFilterInput | null;
 };
 
 export type CreateCustomerMutation = {
@@ -510,6 +559,48 @@ export type DeleteLineMutation = {
   owner: string | null;
 };
 
+export type CreateUserMutation = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type UpdateUserMutation = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type DeleteUserMutation = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
 export type GetCustomerQuery = {
   __typename: "Customer";
   id: string;
@@ -678,6 +769,38 @@ export type ListLinesQuery = {
     title: string;
     quantity: number;
     cost: number;
+    createdAt: string;
+    updatedAt: string;
+    owner: string | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetUserQuery = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type ListUsersQuery = {
+  __typename: "ModelUserConnection";
+  items: Array<{
+    __typename: "User";
+    id: string;
+    firstname: string | null;
+    lastname: string | null;
+    address: string | null;
+    phone: string | null;
+    email: string | null;
+    siret: string | null;
     createdAt: string;
     updatedAt: string;
     owner: string | null;
@@ -983,6 +1106,48 @@ export type OnDeleteLineSubscription = {
   title: string;
   quantity: number;
   cost: number;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type OnCreateUserSubscription = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type OnUpdateUserSubscription = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
+  createdAt: string;
+  updatedAt: string;
+  owner: string | null;
+};
+
+export type OnDeleteUserSubscription = {
+  __typename: "User";
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  siret: string | null;
   createdAt: string;
   updatedAt: string;
   owner: string | null;
@@ -1439,6 +1604,96 @@ export class APIService {
     )) as any;
     return <DeleteLineMutation>response.data.deleteLine;
   }
+  async CreateUser(
+    input: CreateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<CreateUserMutation> {
+    const statement = `mutation CreateUser($input: CreateUserInput!, $condition: ModelUserConditionInput) {
+        createUser(input: $input, condition: $condition) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateUserMutation>response.data.createUser;
+  }
+  async UpdateUser(
+    input: UpdateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<UpdateUserMutation> {
+    const statement = `mutation UpdateUser($input: UpdateUserInput!, $condition: ModelUserConditionInput) {
+        updateUser(input: $input, condition: $condition) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateUserMutation>response.data.updateUser;
+  }
+  async DeleteUser(
+    input: DeleteUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<DeleteUserMutation> {
+    const statement = `mutation DeleteUser($input: DeleteUserInput!, $condition: ModelUserConditionInput) {
+        deleteUser(input: $input, condition: $condition) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteUserMutation>response.data.deleteUser;
+  }
   async GetCustomer(id: string): Promise<GetCustomerQuery> {
     const statement = `query GetCustomer($id: ID!) {
         getCustomer(id: $id) {
@@ -1706,6 +1961,69 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListLinesQuery>response.data.listLines;
+  }
+  async GetUser(id: string): Promise<GetUserQuery> {
+    const statement = `query GetUser($id: ID!) {
+        getUser(id: $id) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetUserQuery>response.data.getUser;
+  }
+  async ListUsers(
+    filter?: ModelUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListUsersQuery> {
+    const statement = `query ListUsers($filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
+        listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            firstname
+            lastname
+            address
+            phone
+            email
+            siret
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListUsersQuery>response.data.listUsers;
   }
   OnCreateCustomerListener: Observable<
     OnCreateCustomerSubscription
@@ -2069,4 +2387,64 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteLineSubscription>;
+
+  OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateUser($owner: String!) {
+        onCreateUser(owner: $owner) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`
+    )
+  ) as Observable<OnCreateUserSubscription>;
+
+  OnUpdateUserListener: Observable<OnUpdateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateUser($owner: String!) {
+        onUpdateUser(owner: $owner) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`
+    )
+  ) as Observable<OnUpdateUserSubscription>;
+
+  OnDeleteUserListener: Observable<OnDeleteUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteUser($owner: String!) {
+        onDeleteUser(owner: $owner) {
+          __typename
+          id
+          firstname
+          lastname
+          address
+          phone
+          email
+          siret
+          createdAt
+          updatedAt
+          owner
+        }
+      }`
+    )
+  ) as Observable<OnDeleteUserSubscription>;
 }

@@ -170,3 +170,38 @@ query ListLines(
     nextToken
   }
 }
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      firstname
+      lastname
+      address
+      phone
+      email
+      siret
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}

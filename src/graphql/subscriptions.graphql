@@ -275,3 +275,45 @@ subscription OnDeleteLine($owner: String!) {
     owner
   }
 }
+subscription OnCreateUser($owner: String!) {
+  onCreateUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateUser($owner: String!) {
+  onUpdateUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteUser($owner: String!) {
+  onDeleteUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}

@@ -2,6 +2,7 @@
   <main>
     <mat-toolbar color="primary"><span>Billing Application</span>
       <span class="fill-remaining-space"></span>
+      <a mat-button [routerLink]="['/me']">Me</a>
       <a mat-button [routerLink]="['/customers']">My customers</a>
       <a mat-button [routerLink]="['/bills']">My bills</a>
       <amplify-sign-out></amplify-sign-out>

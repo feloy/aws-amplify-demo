@@ -10,6 +10,11 @@
             "StackName": "amplify-billing-user-173435",
             "StackId": "arn:aws:cloudformation:eu-west-1:496293531155:stack/amplify-billing-user-173435/23829da0-b70a-11ea-840a-0272ba7477a4",
             "AmplifyAppId": "d1054gnrjvy2b0"
+        },
+        "categories": {
+            "auth": {
+                "billinga966576a": {}
+            }
         }
     },
     "production": {
