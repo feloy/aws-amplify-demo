@@ -1,5 +1,13 @@
 {
     "permissions": {
+        "api": {
+            "billing": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
         "storage": {
             "pdfstore": [
                 "create",

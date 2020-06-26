@@ -17,6 +17,10 @@
 		"apibillingGraphQLAPIIdOutput": {
 			"Type": "String",
 			"Default": "apibillingGraphQLAPIIdOutput"
+		},
+		"apibillingGraphQLAPIEndpointOutput": {
+			"Type": "String",
+			"Default": "apibillingGraphQLAPIEndpointOutput"
 		}
 	},
 	"Conditions": {
@@ -95,6 +99,9 @@
 						},
 						"API_BILLING_GRAPHQLAPIIDOUTPUT": {
 							"Ref": "apibillingGraphQLAPIIdOutput"
+						},
+						"API_BILLING_GRAPHQLAPIENDPOINTOUTPUT": {
+							"Ref": "apibillingGraphQLAPIEndpointOutput"
 						}
 					}
 				},
@@ -108,7 +115,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-billing-pdf-135713-deployment",
-					"S3Key": "amplify-builds/pdfcreate-7039796537715a673966-build.zip"
+					"S3Key": "amplify-builds/pdfcreate-334e484967456f446863-build.zip"
 				}
 			}
 		},
@@ -209,6 +216,40 @@
 				"PolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"appsync:Create*",
+								"appsync:StartSchemaCreation",
+								"appsync:GraphQL",
+								"appsync:Get*",
+								"appsync:List*",
+								"appsync:Update*",
+								"appsync:Delete*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:appsync:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":apis/",
+											{
+												"Ref": "apibillingGraphQLAPIIdOutput"
+											},
+											"/*"
+										]
+									]
+								}
+							]
+						},
 						{
 							"Effect": "Allow",
 							"Action": [
