@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { APIService, ListBillsQuery, OnUpdateBillSubscription } from 'src/app/API.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 
 @Component({
@@ -9,9 +9,10 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
   templateUrl: './bills.component.html',
   styleUrls: ['./bills.component.css']
 })
-export class BillsComponent implements OnInit {
+export class BillsComponent implements OnInit, OnDestroy {
 
   bills: any[];
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -23,7 +24,6 @@ export class BillsComponent implements OnInit {
   }
 
   listBills() {
-    console.log("load");
     this.api.ListBills().then((list: ListBillsQuery) => {
       if (list.items.length == 0) {
         this.router.navigate(['newbill']);
@@ -81,7 +81,7 @@ export class BillsComponent implements OnInit {
           }`, { owner: user.username }
         )
       ) as any;
-      OnUpdateBillListener.subscribe(() => {
+      this.subscription = OnUpdateBillListener.subscribe(() => {
         this.listBills();
       });
     });
@@ -90,5 +90,11 @@ export class BillsComponent implements OnInit {
   // sort by createdAt, newest first
   byCreatedAt(a, b) {
     return a.createdAt < b.createdAt ? 1 : -1;
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
