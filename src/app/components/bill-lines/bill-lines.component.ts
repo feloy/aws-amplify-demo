@@ -12,6 +12,7 @@ export class BillLinesComponent implements OnInit {
 
   bill: any;
   form: FormGroup;
+  editable: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,14 +22,17 @@ export class BillLinesComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-        this.loadBill(params['id']);
+      this.loadBill(params['id']);
     });
   }
 
   loadBill(id: string) {
     this.api.GetBill(id).then((bill: GetBillQuery) => {
       this.bill = bill;
-      this.createForm();
+      this.editable = !this.bill.pleasePrint;
+//      if (this.editable) {
+        this.createForm();
+//     }
     });
   }
 
@@ -52,8 +56,20 @@ export class BillLinesComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.api.DeleteLine({id}).then(() => {
+    this.api.DeleteLine({ id }).then(() => {
       this.loadBill(this.bill.id);
+    });
+  }
+
+  createPdf() {
+    this.api.UpdateBill({
+      id: this.bill.id,
+      pleasePrint: true,
+    }).then((res) => {
+      this.editable = false;
+    }, 
+    (error) => {
+      console.log("ERROR", error);
     });
   }
 }

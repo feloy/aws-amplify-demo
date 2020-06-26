@@ -26,6 +26,8 @@ type Bill
   lines: [Line] @connection(keyName: "byBill", fields: ["id"])
   createdAt: AWSDateTime!
   owner: String
+  pleasePrint: Boolean
+  pdfUrl: String
 }
 
 type Line

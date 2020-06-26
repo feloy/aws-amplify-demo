@@ -16,6 +16,8 @@ query GetCustomer($id: ID!) {
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -71,6 +73,8 @@ query GetLine($id: ID!) {
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -97,6 +101,8 @@ query ListLines(
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       owner
@@ -164,6 +170,8 @@ query ListBills(
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     nextToken
@@ -202,6 +210,8 @@ query GetBill($id: ID!) {
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }
