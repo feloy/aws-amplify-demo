@@ -11,7 +11,10 @@ type Customer
 
 type Bill
 @model
-@auth(rules: [{allow: owner}])
+@auth(rules: [
+  {allow: owner},
+  {allow: private, provider: iam}
+])
 @key(name: "byCustomer", fields: ["customerID"])
 @key(name: "byOwnerCreation", fields: ["owner", "createdAt"])
 {
@@ -36,4 +39,17 @@ type Line
   title: String!
   quantity: Int!
   cost: Float!
+}
+
+type User
+@model
+@auth(rules: [{allow: owner}])
+{
+  id: ID!
+  firstname: String
+  lastname: String
+  address: String
+  phone: String
+  email: String
+  siret: String
 }

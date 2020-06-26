@@ -1,3 +1,11 @@
+/* Amplify Params - DO NOT EDIT
+	API_BILLING_BILLTABLE_ARN
+	API_BILLING_BILLTABLE_NAME
+	API_BILLING_GRAPHQLAPIENDPOINTOUTPUT
+	API_BILLING_GRAPHQLAPIIDOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT */
 /**
  * Ths function is triggred when a Bill record is created or updated.
  * This function is intended to add the `serialnum` field of the bill
@@ -5,14 +13,21 @@
  * where NNNN is an auto-increment on the bills of the month YYYYMM.
  */
 const AWS = require('aws-sdk');
+const https = require('https');
+const urlParse = require("url").URL;
+
 AWS.config.update({ region: process.env.REGION });
+
+const appsyncUrl = process.env.API_BILLING_GRAPHQLAPIENDPOINTOUTPUT;
+const region = process.env.REGION;
+const endpoint = new urlParse(appsyncUrl).hostname.toString();
 
 // Create the DynamoDB service object
 const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 exports.handler = async (event) => {
 
-  for (let i=0; i<event.Records.length; i++) {
+  for (let i = 0; i < event.Records.length; i++) {
     const record = event.Records[i];
     if (record.eventName == "INSERT") {
       const ddbTable = process.env.API_BILLING_BILLTABLE_NAME;
@@ -20,7 +35,7 @@ exports.handler = async (event) => {
       const owner = getOwner(record);
       const last = await queryLastSerialnum(ddb, ddbTable, owner, prefix);
       const suffix = getNextSuffix(last);
-      await setSerialnum(ddb, record, ddbTable, prefix + suffix);
+      await setSerialnum(record.dynamodb.Keys.id.S, prefix + suffix);
     }
   }
 };
@@ -52,7 +67,6 @@ function getNextSuffix(last) {
 // Get serialnum of latest bill for this month
 async function queryLastSerialnum(ddb, ddbTable, owner, prefix) {
   var begin = prefix.substring(0, 4) + "-" + prefix.substring(4, 6);
-  console.log("begin", begin);
   var params = {
     TableName: ddbTable,
     IndexName: "byOwnerCreation",
@@ -73,7 +87,6 @@ async function queryLastSerialnum(ddb, ddbTable, owner, prefix) {
 
   try {
     data = await ddb.query(params).promise();
-    console.log("data after await", data);
     if (data.Items.length > 0) {
       return data.Items[0].serialnum.S;
     } else {
@@ -84,28 +97,84 @@ async function queryLastSerialnum(ddb, ddbTable, owner, prefix) {
   }
 }
 
-// Set serialnum for a record
-async function setSerialnum(ddb, record, ddbTable, serialnum) {
-  var params = {
-    TableName: ddbTable,
-    Key: {
-      'id': { "S": record.dynamodb.Keys.id.S }
-    },
-    ExpressionAttributeNames: {
-      "#S": "serialnum"
-    },
-    ExpressionAttributeValues: {
-      ":s": {
-        S: serialnum
+const graphqlQuery = `
+mutation updateBill($input: UpdateBillInput!, $condition: ModelBillConditionInput) {
+  updateBill(input: $input, condition: $condition) {
+    __typename
+    id
+    serialnum
+    title
+    customerID
+    customer {
+      __typename
+      id
+      name
+      address
+      siret
+      createdAt
+      updatedAt
+      owner
+      bills {
+        __typename
+        nextToken
       }
-    },
-    ReturnValues: "ALL_NEW",
-    UpdateExpression: "SET #S = :s"
+    }
+    lines {
+      __typename
+      items {
+        __typename
+        id
+        billID
+        title
+        quantity
+        cost
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    owner
+    updatedAt
+  }
+}`
+
+// Set serialnum for a record
+async function setSerialnum(id, serialnum) {
+  const req = new AWS.HttpRequest(appsyncUrl, region);
+
+  const item = {
+    input: {
+      serialnum: serialnum,
+      id: id
+    }
   };
 
+  req.method = "POST";
+  req.headers.host = endpoint;
+  req.headers["Content-Type"] = "application/json";
+  req.body = JSON.stringify({
+    query: graphqlQuery,
+    operationName: "updateBill",
+    variables: item
+  });
+
+  // IAM Auth
+  const signer = new AWS.Signers.V4(req, "appsync", true);
+  signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
+
   try {
-    data = await ddb.updateItem(params).promise();
-    console.log("new data", data);
+    await new Promise((resolve, reject) => {
+      const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
+        result.on('data', (data) => {
+          resolve(JSON.parse(data.toString()));
+        });
+      });
+
+      httpRequest.write(req.body);
+      httpRequest.end();
+    });
   } catch (err) {
     console.log("ERROR", err);
   }

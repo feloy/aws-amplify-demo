@@ -5,6 +5,7 @@ import { BillsComponent } from './components/bills/bills.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { BillComponent } from './components/bill/bill.component';
 import { BillLinesComponent } from './components/bill-lines/bill-lines.component';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
     path: 'bill-lines/:id',
     component: BillLinesComponent,
   },
+  {
+    path: 'me',
+    component: UserComponent,
+  }
 ];
 
 @NgModule({

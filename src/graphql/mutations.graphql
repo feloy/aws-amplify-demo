@@ -8,6 +8,9 @@ mutation CreateCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -20,9 +23,6 @@ mutation CreateCustomer(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 mutation UpdateCustomer(
@@ -34,6 +34,9 @@ mutation UpdateCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -46,9 +49,6 @@ mutation UpdateCustomer(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 mutation DeleteCustomer(
@@ -60,6 +60,9 @@ mutation DeleteCustomer(
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -72,6 +75,162 @@ mutation DeleteCustomer(
       }
       nextToken
     }
+  }
+}
+mutation CreateLine(
+  $input: CreateLineInput!
+  $condition: ModelLineConditionInput
+) {
+  createLine(input: $input, condition: $condition) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+mutation UpdateLine(
+  $input: UpdateLineInput!
+  $condition: ModelLineConditionInput
+) {
+  updateLine(input: $input, condition: $condition) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+mutation DeleteLine(
+  $input: DeleteLineInput!
+  $condition: ModelLineConditionInput
+) {
+  deleteLine(input: $input, condition: $condition) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  createUser(input: $input, condition: $condition) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
     createdAt
     updatedAt
     owner
@@ -91,12 +250,12 @@ mutation CreateBill(
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -130,12 +289,12 @@ mutation UpdateBill(
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -169,12 +328,12 @@ mutation DeleteBill(
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -192,113 +351,5 @@ mutation DeleteBill(
     createdAt
     owner
     updatedAt
-  }
-}
-mutation CreateLine(
-  $input: CreateLineInput!
-  $condition: ModelLineConditionInput
-) {
-  createLine(input: $input, condition: $condition) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
-  }
-}
-mutation UpdateLine(
-  $input: UpdateLineInput!
-  $condition: ModelLineConditionInput
-) {
-  updateLine(input: $input, condition: $condition) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
-  }
-}
-mutation DeleteLine(
-  $input: DeleteLineInput!
-  $condition: ModelLineConditionInput
-) {
-  deleteLine(input: $input, condition: $condition) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
   }
 }

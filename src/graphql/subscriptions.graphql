@@ -5,6 +5,9 @@ subscription OnCreateCustomer($owner: String!) {
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -17,9 +20,6 @@ subscription OnCreateCustomer($owner: String!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 subscription OnUpdateCustomer($owner: String!) {
@@ -28,6 +28,9 @@ subscription OnUpdateCustomer($owner: String!) {
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -40,9 +43,6 @@ subscription OnUpdateCustomer($owner: String!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
-    owner
   }
 }
 subscription OnDeleteCustomer($owner: String!) {
@@ -51,6 +51,9 @@ subscription OnDeleteCustomer($owner: String!) {
     name
     address
     siret
+    createdAt
+    updatedAt
+    owner
     bills {
       items {
         id
@@ -63,6 +66,144 @@ subscription OnDeleteCustomer($owner: String!) {
       }
       nextToken
     }
+  }
+}
+subscription OnCreateLine($owner: String!) {
+  onCreateLine(owner: $owner) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+subscription OnUpdateLine($owner: String!) {
+  onUpdateLine(owner: $owner) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+subscription OnDeleteLine($owner: String!) {
+  onDeleteLine(owner: $owner) {
+    id
+    billID
+    title
+    quantity
+    cost
+    createdAt
+    updatedAt
+    bill {
+      id
+      serialnum
+      title
+      customerID
+      customer {
+        id
+        name
+        address
+        siret
+        createdAt
+        updatedAt
+        owner
+      }
+      lines {
+        nextToken
+      }
+      createdAt
+      owner
+      updatedAt
+    }
+    owner
+  }
+}
+subscription OnCreateUser($owner: String!) {
+  onCreateUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateUser($owner: String!) {
+  onUpdateUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteUser($owner: String!) {
+  onDeleteUser(owner: $owner) {
+    id
+    firstname
+    lastname
+    address
+    phone
+    email
+    siret
     createdAt
     updatedAt
     owner
@@ -79,12 +220,12 @@ subscription OnCreateBill($owner: String!) {
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -115,12 +256,12 @@ subscription OnUpdateBill($owner: String!) {
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -151,12 +292,12 @@ subscription OnDeleteBill($owner: String!) {
       name
       address
       siret
-      bills {
-        nextToken
-      }
       createdAt
       updatedAt
       owner
+      bills {
+        nextToken
+      }
     }
     lines {
       items {
@@ -174,104 +315,5 @@ subscription OnDeleteBill($owner: String!) {
     createdAt
     owner
     updatedAt
-  }
-}
-subscription OnCreateLine($owner: String!) {
-  onCreateLine(owner: $owner) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnUpdateLine($owner: String!) {
-  onUpdateLine(owner: $owner) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnDeleteLine($owner: String!) {
-  onDeleteLine(owner: $owner) {
-    id
-    billID
-    bill {
-      id
-      serialnum
-      title
-      customerID
-      customer {
-        id
-        name
-        address
-        siret
-        createdAt
-        updatedAt
-        owner
-      }
-      lines {
-        nextToken
-      }
-      createdAt
-      owner
-      updatedAt
-    }
-    title
-    quantity
-    cost
-    createdAt
-    updatedAt
-    owner
   }
 }

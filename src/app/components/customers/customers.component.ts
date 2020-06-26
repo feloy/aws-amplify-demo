@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService, ListCustomersQuery, OnCreateCustomerSubscription } from 'src/app/API.service';
 import { API } from 'aws-amplify';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -11,10 +12,16 @@ export class CustomersComponent implements OnInit {
 
   customers: any[];
 
-  constructor(private api: APIService) { }
+  constructor(
+    private router: Router,
+    private api: APIService) { }
 
   ngOnInit(): void {
     this.api.ListCustomers().then((list: ListCustomersQuery) => {
+      if (list.items.length == 0) {
+        this.router.navigate(['newcustomer']);
+        return;
+      }
       this.customers = list.items.sort(this.byName);
     });
   }

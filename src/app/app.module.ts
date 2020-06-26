@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { BillComponent } from './components/bill/bill.component';
 import { CustomerSelectComponent } from './controls/customer-select/customer-select.component';
 import { BillLinesComponent } from './components/bill-lines/bill-lines.component';
+import { UserComponent } from './components/user/user.component';
 
 /* Configure Amplify resources */
 Amplify.configure(awsmobile);
@@ -34,7 +35,8 @@ Amplify.configure(awsmobile);
     CustomerComponent,
     BillComponent,
     CustomerSelectComponent,
-    BillLinesComponent
+    BillLinesComponent,
+    UserComponent
   ],
   imports: [
     // Angular
