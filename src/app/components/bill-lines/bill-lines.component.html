@@ -49,3 +49,4 @@
         <button *ngIf="editable" mat-raised-button color="primary" (click)="createPdf()">Create PDF</button>
     </form>
 </div>
+<a *ngIf="pdfUrl" mat-raised-button color="primary" href="{{pdfUrl}}">Download PDF</a>

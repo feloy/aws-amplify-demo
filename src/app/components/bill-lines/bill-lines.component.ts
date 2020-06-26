@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService, GetBillQuery } from 'src/app/API.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Storage, Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-bill-lines',
@@ -13,6 +14,7 @@ export class BillLinesComponent implements OnInit {
   bill: any;
   form: FormGroup;
   editable: boolean = false;
+  pdfUrl: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,7 +22,6 @@ export class BillLinesComponent implements OnInit {
     private api: APIService) { }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       this.loadBill(params['id']);
     });
@@ -30,9 +31,12 @@ export class BillLinesComponent implements OnInit {
     this.api.GetBill(id).then((bill: GetBillQuery) => {
       this.bill = bill;
       this.editable = !this.bill.pleasePrint;
-//      if (this.editable) {
-        this.createForm();
-//     }
+      this.createForm();
+      if (this.bill.pdfUrl) {
+        Storage.get(this.bill.pdfUrl).then()
+          .then((result: string) => this.pdfUrl = result)
+          .catch(err => console.log(err));
+      }
     });
   }
 
@@ -67,9 +71,9 @@ export class BillLinesComponent implements OnInit {
       pleasePrint: true,
     }).then((res) => {
       this.editable = false;
-    }, 
-    (error) => {
-      console.log("ERROR", error);
-    });
+    },
+      (error) => {
+        console.log("ERROR", error);
+      });
   }
 }

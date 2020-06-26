@@ -48,7 +48,8 @@ print = async (bill) => {
   pdf.SetFont('Arial', 'B', 16);
   pdf.Cell(40, 10, bill.title.S);
   const content = pdf.Output('S');
-  const ok = await writeToBucket(bill.id.S, content);
+  const key = 'public/' + bill.id.S + '.pdf';
+  const ok = await writeToBucket(key, content);
   if (ok) {
     await setPdfUrl(bill.id.S, bill.id.S+".pdf")
   }
@@ -57,7 +58,7 @@ print = async (bill) => {
 writeToBucket = async (key, content) => {
   const params = {
     Bucket: process.env.STORAGE_PDFSTORE_BUCKETNAME,
-    Key: key + '.pdf',
+    Key: key,
     Body: content
   };
 
