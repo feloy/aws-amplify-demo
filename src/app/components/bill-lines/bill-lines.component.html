@@ -17,12 +17,12 @@
                 <td>{{line.title}}</td>
                 <td>{{line.cost}}</td>
                 <td>{{total(line)}}</td>
-                <td>
+                <td *ngIf="editable" >
                     <button mat-button (click)="delete(line.id)">Delete</button>
 
                 </td>
             </tr>
-            <tr>
+            <tr *ngIf="editable">
                 <td>
                     <input type="hidden" formControlName="billID">
                     <mat-form-field [style.width.px]="48">
@@ -45,5 +45,8 @@
                 </td>
             </tr>
         </table>
+
+        <button *ngIf="editable" mat-raised-button color="primary" (click)="createPdf()">Create PDF</button>
     </form>
 </div>
+<a *ngIf="pdfUrl" mat-raised-button color="primary" href="{{pdfUrl}}">Download PDF</a>

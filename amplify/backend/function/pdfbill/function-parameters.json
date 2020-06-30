@@ -1,0 +1,35 @@
+{
+    "permissions": {
+        "api": {
+            "billing": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "storage": {
+            "pdfstore": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "Customer:@model(appsync)": [
+                "read"
+            ],
+            "Bill:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "Line:@model(appsync)": [
+                "read"
+            ],
+            "User:@model(appsync)": [
+                "read"
+            ]
+        }
+    }
+}

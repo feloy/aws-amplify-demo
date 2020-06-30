@@ -16,6 +16,8 @@ subscription OnCreateCustomer($owner: String!) {
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -39,6 +41,8 @@ subscription OnUpdateCustomer($owner: String!) {
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -62,6 +66,8 @@ subscription OnDeleteCustomer($owner: String!) {
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -96,6 +102,8 @@ subscription OnCreateLine($owner: String!) {
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -129,6 +137,8 @@ subscription OnUpdateLine($owner: String!) {
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -162,6 +172,8 @@ subscription OnDeleteLine($owner: String!) {
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -176,9 +188,9 @@ subscription OnCreateUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnUpdateUser($owner: String!) {
@@ -190,9 +202,9 @@ subscription OnUpdateUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnDeleteUser($owner: String!) {
@@ -204,9 +216,9 @@ subscription OnDeleteUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnCreateBill($owner: String!) {
@@ -242,6 +254,8 @@ subscription OnCreateBill($owner: String!) {
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }
@@ -278,6 +292,8 @@ subscription OnUpdateBill($owner: String!) {
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }
@@ -314,6 +330,8 @@ subscription OnDeleteBill($owner: String!) {
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }

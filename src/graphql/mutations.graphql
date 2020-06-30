@@ -19,6 +19,8 @@ mutation CreateCustomer(
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -45,6 +47,8 @@ mutation UpdateCustomer(
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -71,6 +75,8 @@ mutation DeleteCustomer(
         customerID
         createdAt
         owner
+        pleasePrint
+        pdfUrl
         updatedAt
       }
       nextToken
@@ -108,6 +114,8 @@ mutation CreateLine(
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -144,6 +152,8 @@ mutation UpdateLine(
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -180,6 +190,8 @@ mutation DeleteLine(
       }
       createdAt
       owner
+      pleasePrint
+      pdfUrl
       updatedAt
     }
     owner
@@ -197,9 +209,9 @@ mutation CreateUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation UpdateUser(
@@ -214,9 +226,9 @@ mutation UpdateUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation DeleteUser(
@@ -231,9 +243,9 @@ mutation DeleteUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation CreateBill(
@@ -272,6 +284,8 @@ mutation CreateBill(
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }
@@ -311,6 +325,8 @@ mutation UpdateBill(
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }
@@ -350,6 +366,8 @@ mutation DeleteBill(
     }
     createdAt
     owner
+    pleasePrint
+    pdfUrl
     updatedAt
   }
 }

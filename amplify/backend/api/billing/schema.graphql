@@ -26,12 +26,15 @@ type Bill
   lines: [Line] @connection(keyName: "byBill", fields: ["id"])
   createdAt: AWSDateTime!
   owner: String
+  pleasePrint: Boolean
+  pdfUrl: String
 }
 
 type Line
 @model
 @auth(rules: [{allow: owner}])
 @key(name: "byBill", fields: ["billID", "title"])
+@key(name: "byBillCreation", fields: ["billID", "createdAt"])
 {
   id: ID!
   billID: ID!
@@ -39,11 +42,13 @@ type Line
   title: String!
   quantity: Int!
   cost: Float!
+  createdAt: AWSDateTime!
 }
 
 type User
 @model
 @auth(rules: [{allow: owner}])
+@key(name: "byOwner", fields: ["owner"])
 {
   id: ID!
   firstname: String
@@ -52,4 +57,5 @@ type User
   phone: String
   email: String
   siret: String
+  owner: String
 }

@@ -150,6 +150,7 @@ export type CreateUserInput = {
   phone?: string | null;
   email?: string | null;
   siret?: string | null;
+  owner?: string | null;
 };
 
 export type ModelUserConditionInput = {
@@ -172,6 +173,7 @@ export type UpdateUserInput = {
   phone?: string | null;
   email?: string | null;
   siret?: string | null;
+  owner?: string | null;
 };
 
 export type DeleteUserInput = {
@@ -185,6 +187,8 @@ export type CreateBillInput = {
   customerID: string;
   createdAt?: string | null;
   owner?: string | null;
+  pleasePrint?: boolean | null;
+  pdfUrl?: string | null;
 };
 
 export type ModelBillConditionInput = {
@@ -192,9 +196,18 @@ export type ModelBillConditionInput = {
   title?: ModelStringInput | null;
   customerID?: ModelIDInput | null;
   createdAt?: ModelStringInput | null;
+  pleasePrint?: ModelBooleanInput | null;
+  pdfUrl?: ModelStringInput | null;
   and?: Array<ModelBillConditionInput | null> | null;
   or?: Array<ModelBillConditionInput | null> | null;
   not?: ModelBillConditionInput | null;
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null;
+  eq?: boolean | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
 };
 
 export type UpdateBillInput = {
@@ -204,6 +217,8 @@ export type UpdateBillInput = {
   customerID?: string | null;
   createdAt?: string | null;
   owner?: string | null;
+  pleasePrint?: boolean | null;
+  pdfUrl?: string | null;
 };
 
 export type DeleteBillInput = {
@@ -239,6 +254,7 @@ export type ModelUserFilterInput = {
   phone?: ModelStringInput | null;
   email?: ModelStringInput | null;
   siret?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
@@ -251,6 +267,8 @@ export type ModelBillFilterInput = {
   customerID?: ModelIDInput | null;
   createdAt?: ModelStringInput | null;
   owner?: ModelStringInput | null;
+  pleasePrint?: ModelBooleanInput | null;
+  pdfUrl?: ModelStringInput | null;
   and?: Array<ModelBillFilterInput | null> | null;
   or?: Array<ModelBillFilterInput | null> | null;
   not?: ModelBillFilterInput | null;
@@ -275,6 +293,8 @@ export type CreateCustomerMutation = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -300,6 +320,8 @@ export type UpdateCustomerMutation = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -325,6 +347,8 @@ export type DeleteCustomerMutation = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -362,6 +386,8 @@ export type CreateLineMutation = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -398,6 +424,8 @@ export type UpdateLineMutation = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -434,6 +462,8 @@ export type DeleteLineMutation = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -448,9 +478,9 @@ export type CreateUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type UpdateUserMutation = {
@@ -462,9 +492,9 @@ export type UpdateUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type DeleteUserMutation = {
@@ -476,9 +506,9 @@ export type DeleteUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type CreateBillMutation = {
@@ -518,6 +548,8 @@ export type CreateBillMutation = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -558,6 +590,8 @@ export type UpdateBillMutation = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -598,6 +632,8 @@ export type DeleteBillMutation = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -620,6 +656,8 @@ export type GetCustomerQuery = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -676,6 +714,8 @@ export type GetLineQuery = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -700,6 +740,8 @@ export type ListLinesQuery = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null;
     owner: string | null;
@@ -716,9 +758,9 @@ export type GetUserQuery = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type ListUsersQuery = {
@@ -732,9 +774,9 @@ export type ListUsersQuery = {
     phone: string | null;
     email: string | null;
     siret: string | null;
+    owner: string | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -763,6 +805,8 @@ export type ListBillsQuery = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
@@ -805,6 +849,8 @@ export type GetBillQuery = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -827,6 +873,8 @@ export type OnCreateCustomerSubscription = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -852,6 +900,8 @@ export type OnUpdateCustomerSubscription = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -877,6 +927,8 @@ export type OnDeleteCustomerSubscription = {
       customerID: string;
       createdAt: string;
       owner: string | null;
+      pleasePrint: boolean | null;
+      pdfUrl: string | null;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
@@ -914,6 +966,8 @@ export type OnCreateLineSubscription = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -950,6 +1004,8 @@ export type OnUpdateLineSubscription = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -986,6 +1042,8 @@ export type OnDeleteLineSubscription = {
     } | null;
     createdAt: string;
     owner: string | null;
+    pleasePrint: boolean | null;
+    pdfUrl: string | null;
     updatedAt: string;
   } | null;
   owner: string | null;
@@ -1000,9 +1058,9 @@ export type OnCreateUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnUpdateUserSubscription = {
@@ -1014,9 +1072,9 @@ export type OnUpdateUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnDeleteUserSubscription = {
@@ -1028,9 +1086,9 @@ export type OnDeleteUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnCreateBillSubscription = {
@@ -1070,6 +1128,8 @@ export type OnCreateBillSubscription = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -1110,6 +1170,8 @@ export type OnUpdateBillSubscription = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -1150,6 +1212,8 @@ export type OnDeleteBillSubscription = {
   } | null;
   createdAt: string;
   owner: string | null;
+  pleasePrint: boolean | null;
+  pdfUrl: string | null;
   updatedAt: string;
 };
 
@@ -1181,6 +1245,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -1222,6 +1288,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -1263,6 +1331,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -1316,6 +1386,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -1368,6 +1440,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -1420,6 +1494,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -1450,9 +1526,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1480,9 +1556,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1510,9 +1586,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1568,6 +1644,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`;
@@ -1624,6 +1702,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`;
@@ -1680,6 +1760,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`;
@@ -1715,6 +1797,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -1802,6 +1886,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -1840,6 +1926,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             owner
@@ -1873,9 +1961,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1903,9 +1991,9 @@ export class APIService {
             phone
             email
             siret
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
@@ -1955,6 +2043,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           nextToken
@@ -2014,6 +2104,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`;
@@ -2049,6 +2141,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -2082,6 +2176,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -2115,6 +2211,8 @@ export class APIService {
               customerID
               createdAt
               owner
+              pleasePrint
+              pdfUrl
               updatedAt
             }
             nextToken
@@ -2158,6 +2256,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -2200,6 +2300,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -2242,6 +2344,8 @@ export class APIService {
             }
             createdAt
             owner
+            pleasePrint
+            pdfUrl
             updatedAt
           }
           owner
@@ -2262,9 +2366,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )
@@ -2282,9 +2386,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )
@@ -2302,9 +2406,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )
@@ -2350,6 +2454,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`
@@ -2396,6 +2502,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`
@@ -2442,6 +2550,8 @@ export class APIService {
           }
           createdAt
           owner
+          pleasePrint
+          pdfUrl
           updatedAt
         }
       }`

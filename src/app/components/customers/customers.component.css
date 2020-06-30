@@ -2,5 +2,5 @@
     right: 16px;
     bottom: 16px;
     left: auto;
-    position: absolute;
+    position: fixed;
 }

@@ -17,6 +17,10 @@
 		"apibillingGraphQLAPIEndpointOutput": {
 			"Type": "String",
 			"Default": "apibillingGraphQLAPIEndpointOutput"
+		},
+		"storagepdfstoreBucketName": {
+			"Type": "String",
+			"Default": "storagepdfstoreBucketName"
 		}
 	},
 	"Conditions": {
@@ -37,16 +41,16 @@
 				"aws:asset:property": "Code"
 			},
 			"Properties": {
-				"Handler": "index.handler",
+				"Handler": "main",
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"serial",
+						"pdfbill",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"serial",
+									"pdfbill",
 									"-",
 									{
 										"Ref": "env"
@@ -63,6 +67,41 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"API_BILLING_GRAPHQLAPIIDOUTPUT": {
+							"Ref": "apibillingGraphQLAPIIdOutput"
+						},
+						"API_BILLING_GRAPHQLAPIENDPOINTOUTPUT": {
+							"Ref": "apibillingGraphQLAPIEndpointOutput"
+						},
+						"STORAGE_PDFSTORE_BUCKETNAME": {
+							"Ref": "storagepdfstoreBucketName"
+						},
+						"API_BILLING_CUSTOMERTABLE_NAME": {
+							"Fn::ImportValue": {
+								"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:CustomerTable:Name"
+							}
+						},
+						"API_BILLING_CUSTOMERTABLE_ARN": {
+							"Fn::Join": [
+								"",
+								[
+									"arn:aws:dynamodb:",
+									{
+										"Ref": "AWS::Region"
+									},
+									":",
+									{
+										"Ref": "AWS::AccountId"
+									},
+									":table/",
+									{
+										"Fn::ImportValue": {
+											"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:CustomerTable:Name"
+										}
+									}
+								]
+							]
 						},
 						"API_BILLING_BILLTABLE_NAME": {
 							"Fn::ImportValue": {
@@ -90,11 +129,57 @@
 								]
 							]
 						},
-						"API_BILLING_GRAPHQLAPIIDOUTPUT": {
-							"Ref": "apibillingGraphQLAPIIdOutput"
+						"API_BILLING_LINETABLE_NAME": {
+							"Fn::ImportValue": {
+								"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:LineTable:Name"
+							}
 						},
-						"API_BILLING_GRAPHQLAPIENDPOINTOUTPUT": {
-							"Ref": "apibillingGraphQLAPIEndpointOutput"
+						"API_BILLING_LINETABLE_ARN": {
+							"Fn::Join": [
+								"",
+								[
+									"arn:aws:dynamodb:",
+									{
+										"Ref": "AWS::Region"
+									},
+									":",
+									{
+										"Ref": "AWS::AccountId"
+									},
+									":table/",
+									{
+										"Fn::ImportValue": {
+											"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:LineTable:Name"
+										}
+									}
+								]
+							]
+						},
+						"API_BILLING_USERTABLE_NAME": {
+							"Fn::ImportValue": {
+								"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:UserTable:Name"
+							}
+						},
+						"API_BILLING_USERTABLE_ARN": {
+							"Fn::Join": [
+								"",
+								[
+									"arn:aws:dynamodb:",
+									{
+										"Ref": "AWS::Region"
+									},
+									":",
+									{
+										"Ref": "AWS::AccountId"
+									},
+									":table/",
+									{
+										"Fn::ImportValue": {
+											"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:UserTable:Name"
+										}
+									}
+								]
+							]
 						}
 					}
 				},
@@ -104,11 +189,11 @@
 						"Arn"
 					]
 				},
-				"Runtime": "nodejs12.x",
+				"Runtime": "go1.x",
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-billing-pdf-135713-deployment",
-					"S3Key": "amplify-builds/serial-586a73464359417a6742-build.zip"
+					"S3Key": "amplify-builds/pdfbill-78636c59484f76507172-build.zip"
 				}
 			}
 		},
@@ -118,12 +203,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"billingLambdaRolea5a659ec",
+						"billingLambdaRole0109145b",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"billingLambdaRolea5a659ec",
+									"billingLambdaRole0109145b",
 									"-",
 									{
 										"Ref": "env"
@@ -246,6 +331,85 @@
 						{
 							"Effect": "Allow",
 							"Action": [
+								"s3:PutObject",
+								"s3:GetObject",
+								"s3:ListBucket",
+								"s3:DeleteObject"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:s3:::",
+											{
+												"Ref": "storagepdfstoreBucketName"
+											},
+											"/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:Get*",
+								"dynamodb:BatchGetItem",
+								"dynamodb:List*",
+								"dynamodb:Describe*",
+								"dynamodb:Scan",
+								"dynamodb:Query"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:CustomerTable:Name"
+												}
+											}
+										]
+									]
+								},
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:CustomerTable:Name"
+												}
+											},
+											"/index/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
 								"dynamodb:Put*",
 								"dynamodb:Create*",
 								"dynamodb:BatchWriteItem",
@@ -297,6 +461,118 @@
 											{
 												"Fn::ImportValue": {
 													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:BillTable:Name"
+												}
+											},
+											"/index/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:Get*",
+								"dynamodb:BatchGetItem",
+								"dynamodb:List*",
+								"dynamodb:Describe*",
+								"dynamodb:Scan",
+								"dynamodb:Query"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:LineTable:Name"
+												}
+											}
+										]
+									]
+								},
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:LineTable:Name"
+												}
+											},
+											"/index/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:Get*",
+								"dynamodb:BatchGetItem",
+								"dynamodb:List*",
+								"dynamodb:Describe*",
+								"dynamodb:Scan",
+								"dynamodb:Query"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:UserTable:Name"
+												}
+											}
+										]
+									]
+								},
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:dynamodb:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":table/",
+											{
+												"Fn::ImportValue": {
+													"Fn::Sub": "${apibillingGraphQLAPIIdOutput}:GetAtt:UserTable:Name"
 												}
 											},
 											"/index/*"
