@@ -69,8 +69,10 @@ export class BillLinesComponent implements OnInit {
     this.api.UpdateBill({
       id: this.bill.id,
       pleasePrint: true,
+      pdfUrl: this.bill.id+".pdf",
     }).then((res) => {
       this.editable = false;
+      this.loadBill(this.bill.id);
     },
       (error) => {
         console.log("ERROR", error);

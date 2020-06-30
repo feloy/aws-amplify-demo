@@ -34,6 +34,7 @@ type Line
 @model
 @auth(rules: [{allow: owner}])
 @key(name: "byBill", fields: ["billID", "title"])
+@key(name: "byBillCreation", fields: ["billID", "createdAt"])
 {
   id: ID!
   billID: ID!
@@ -41,6 +42,7 @@ type Line
   title: String!
   quantity: Int!
   cost: Float!
+  createdAt: AWSDateTime!
 }
 
 type User
