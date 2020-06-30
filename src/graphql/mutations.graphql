@@ -209,9 +209,9 @@ mutation CreateUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation UpdateUser(
@@ -226,9 +226,9 @@ mutation UpdateUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation DeleteUser(
@@ -243,9 +243,9 @@ mutation DeleteUser(
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 mutation CreateBill(

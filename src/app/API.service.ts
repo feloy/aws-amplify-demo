@@ -150,6 +150,7 @@ export type CreateUserInput = {
   phone?: string | null;
   email?: string | null;
   siret?: string | null;
+  owner?: string | null;
 };
 
 export type ModelUserConditionInput = {
@@ -172,6 +173,7 @@ export type UpdateUserInput = {
   phone?: string | null;
   email?: string | null;
   siret?: string | null;
+  owner?: string | null;
 };
 
 export type DeleteUserInput = {
@@ -252,6 +254,7 @@ export type ModelUserFilterInput = {
   phone?: ModelStringInput | null;
   email?: ModelStringInput | null;
   siret?: ModelStringInput | null;
+  owner?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
@@ -475,9 +478,9 @@ export type CreateUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type UpdateUserMutation = {
@@ -489,9 +492,9 @@ export type UpdateUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type DeleteUserMutation = {
@@ -503,9 +506,9 @@ export type DeleteUserMutation = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type CreateBillMutation = {
@@ -755,9 +758,9 @@ export type GetUserQuery = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type ListUsersQuery = {
@@ -771,9 +774,9 @@ export type ListUsersQuery = {
     phone: string | null;
     email: string | null;
     siret: string | null;
+    owner: string | null;
     createdAt: string;
     updatedAt: string;
-    owner: string | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -1055,9 +1058,9 @@ export type OnCreateUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnUpdateUserSubscription = {
@@ -1069,9 +1072,9 @@ export type OnUpdateUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnDeleteUserSubscription = {
@@ -1083,9 +1086,9 @@ export type OnDeleteUserSubscription = {
   phone: string | null;
   email: string | null;
   siret: string | null;
+  owner: string | null;
   createdAt: string;
   updatedAt: string;
-  owner: string | null;
 };
 
 export type OnCreateBillSubscription = {
@@ -1523,9 +1526,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1553,9 +1556,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1583,9 +1586,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1958,9 +1961,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1988,9 +1991,9 @@ export class APIService {
             phone
             email
             siret
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
@@ -2363,9 +2366,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )
@@ -2383,9 +2386,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )
@@ -2403,9 +2406,9 @@ export class APIService {
           phone
           email
           siret
+          owner
           createdAt
           updatedAt
-          owner
         }
       }`
     )

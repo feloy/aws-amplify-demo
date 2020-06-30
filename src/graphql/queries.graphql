@@ -119,9 +119,9 @@ query GetUser($id: ID!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 query ListUsers(
@@ -138,9 +138,9 @@ query ListUsers(
       phone
       email
       siret
+      owner
       createdAt
       updatedAt
-      owner
     }
     nextToken
   }

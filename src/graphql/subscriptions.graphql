@@ -188,9 +188,9 @@ subscription OnCreateUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnUpdateUser($owner: String!) {
@@ -202,9 +202,9 @@ subscription OnUpdateUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnDeleteUser($owner: String!) {
@@ -216,9 +216,9 @@ subscription OnDeleteUser($owner: String!) {
     phone
     email
     siret
+    owner
     createdAt
     updatedAt
-    owner
   }
 }
 subscription OnCreateBill($owner: String!) {
