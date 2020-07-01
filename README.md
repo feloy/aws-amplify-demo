@@ -1,27 +1,33 @@
 # Billing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+## Deployment
 
-## Development server
+First, fork the repository and clone your fork into your development machine.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+From the AWS Amplify console, connect your repository branch to the application. Create a new environment *master*.
 
-## Code scaffolding
+From your local machine:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+$ cd aws-amplify-demo
+$ amplify configure
+[...]
+# during this step, create a user named billing-user
+[...]
+# Find this exact command in Backend environments > master > Edit backend
+$ amplify pull --appId ******** --envName master
+? Do you want to use an AWS profile? *Yes*
+? Please choose the profile you want to use *billing-user*
+Amplify AppID found: ********. Amplify App name is: aws-amplify-demo
+Backend environment master found in Amplify Console app: aws-amplify-demo
+? Choose your default editor: *Visual Studio Code*
+? Choose the type of app that you are building *javascript*
+Please tell us about your project
+? What javascript framework are you using *angular*
+? Source Directory Path:  *src*
+? Distribution Directory Path: *dist/billing*
+? Build Command:  *npm run-script build*
+? Start Command: *ng serve*
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+? Do you plan on modifying this backend? *Y*
+```
