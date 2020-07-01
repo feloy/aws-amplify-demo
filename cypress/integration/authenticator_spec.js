@@ -12,7 +12,7 @@ describe('Authenticator:', function () {
                 .type("test-user", { force: true });
             cy.get('amplify-authenticator')
                 .find(selectors.signInPasswordInput, { includeShadowDom: true })
-                .type("test-user-password", , { force: true });
+                .type("test-user-password", { force: true });
             cy.get('amplify-authenticator')
                 .find(selectors.signInSignInButton, { includeShadowDom: true })
                 .contains('Sign In')
@@ -21,7 +21,7 @@ describe('Authenticator:', function () {
             // Step 3: Make an assertion (Check for sign-out text)
             cy.get('amplify-authenticator')
                 .find(selectors.signOutButton, { includeShadowDom: true })
-                .contains('Sign Out');
+                .contains('Sign Out').should('be.visible');
         });
     });
 
