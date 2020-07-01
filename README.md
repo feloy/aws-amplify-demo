@@ -1,12 +1,19 @@
 # Billing
 
+This is a simple application demonstrating the use of AWS Amplify.
+The application lets you create bills for your customers and generate PDF files of these bills.
+
+More details at https://medium.com/@feloy/first-steps-with-aws-amplify-for-an-angular-app-31c271ade5a6
+
 ## Deployment
 
 First, fork the repository and clone your fork into your development machine.
 
 From the AWS Amplify console, connect your repository branch to the application. Create a new environment *master*.
 
-From your local machine:
+Wait for the Provision/Build/Deploy/Verify steps to finish (this can take several minutes).
+
+Then, from your local machine:
 
 ```sh
 $ cd aws-amplify-demo
