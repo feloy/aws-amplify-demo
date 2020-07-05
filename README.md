@@ -9,7 +9,7 @@ More details at https://medium.com/@feloy/first-steps-with-aws-amplify-for-an-an
 
 First, fork the repository and clone your fork into your development machine.
 
-From the AWS Amplify console, connect your repository branch to the application. Create a new environment *master*.
+From the AWS Amplify console, connect your repository branch to the application. Create a new environment *prod*.
 
 Wait for the Provision/Build/Deploy/Verify steps to finish (this can take several minutes).
 
@@ -21,12 +21,12 @@ $ amplify configure
 [...]
 # during this step, create a user named billing-user
 [...]
-# Find this exact command in Backend environments > master > Edit backend
-$ amplify pull --appId ******** --envName master
+# Find this exact command in Backend environments > prod > Edit backend
+$ amplify pull --appId ******** --envName prod
 ? Do you want to use an AWS profile? *Yes*
 ? Please choose the profile you want to use *billing-user*
 Amplify AppID found: ********. Amplify App name is: aws-amplify-demo
-Backend environment master found in Amplify Console app: aws-amplify-demo
+Backend environment prod found in Amplify Console app: aws-amplify-demo
 ? Choose your default editor: *Visual Studio Code*
 ? Choose the type of app that you are building *javascript*
 Please tell us about your project
